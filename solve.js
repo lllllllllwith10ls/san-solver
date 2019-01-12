@@ -71,6 +71,7 @@ class SanArray {
 	}
 	clean() {
 		let arraylength = this.array.length-1;
+		console.log(arraylength);
 		while(this.array[arraylength] === 1) {
 			console.log(this.array[arraylength]);
 			console.log(this.array.pop());
