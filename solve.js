@@ -340,3 +340,10 @@ class Separator {
 		}
 	}
 }
+
+function solve() {
+	let array = document.getElementById("input").innerHTML;
+	array = new SanArray(array);
+	array.solve();
+	document.getElementById("input").innerHTML = array.toString();
+}
