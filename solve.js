@@ -81,6 +81,7 @@ class Separator {
 		let separator = false;
 		let marker = 0;
 		this.parent = parent;
+		str = str.substring(1, str.length - 1);
 		for(let i = 0; i < str.length; i++) {
 			if(subArray) {
 				if(str[i] === "(") {
