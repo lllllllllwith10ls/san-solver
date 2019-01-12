@@ -101,7 +101,7 @@ class Separator {
 				}
 				if(parentheses === 0) {
 					separator = false;
-					let sep = str.substring(marker+1,i-1);
+					let sep = str.substring(marker+1,i);
 					this.separators.push(new Separator(sep,this));
 					str = str.replace(" ",sep);
 				}
