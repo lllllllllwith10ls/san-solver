@@ -67,7 +67,8 @@ class SanArray {
 		this.array = array;
 		this.base = this.array.shift();
 		this.iterator = this.array.shift();
-		
+		this.separators.shift();
+		this.separators.shift();
 	}
 }
 
