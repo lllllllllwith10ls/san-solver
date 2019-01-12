@@ -70,12 +70,14 @@ class SanArray {
 		this.separators.shift();
 	}
 	clean() {
-		while(this.array[this.array.length-1] === 1) {
+		let arraylength = this.array.length-1;
+		while(this.array[arraylength] === 1) {
 			this.array.pop();
 			this.separators.pop();
+			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
-			while(this.array[i-1] === 1 && this.array[i] !== 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
+			while(this.array[i-1] === 1 && this.array[i] > 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
 				this.array.splice(i-1,1);
 				this.separators.splice(i-1,1);
 			}
@@ -213,11 +215,11 @@ class Separator {
 		}
 	}
 	clean() {
-		if(this.array !== [1]) {
-			while(this.array[this.array.length-1] === 1) {
-				this.array.pop();
-				this.separators.pop();
-			}
+		let arraylength = this.array.length-1;
+		while(this.array[arraylength-1] === 1 && (this.array.length > 1 || this.array[0] > 1)) {
+			this.array.pop();
+			this.separators.pop();
+			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
 			while(this.array[i] === 1 && this.array[i+1] !== 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
