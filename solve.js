@@ -307,7 +307,7 @@ class Separator {
 			let index = this.parent.separators.indexOf(this);
 			let reduced = new Separator(this.toString());
 			reduced.array[0]--;
-			let seps
+			let seps = [];
 			let ones = [];
 			
 			for(let j = 0; j < iterator; j++) {
