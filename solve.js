@@ -196,7 +196,7 @@ class Separator {
 		this.array = array;
 	}
 	toString() {
-		if(this.array === [1]) {
+		if(this.array.length === 1 && this.array[0] === 1) {
 			return ",";
 		} else {
 			let str = "{";
