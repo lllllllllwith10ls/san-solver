@@ -345,10 +345,10 @@ class Separator {
 }
 
 function solve() {
-	let array = document.getElementById("input").innerHTML;
-	if(typof array === "string") {
-		array = new SanArray(array);
-		array = array.solve();
-		document.getElementById("input").innerHTML = arr.toString();
+	let ar = document.getElementById("input").innerHTML;
+	if(typof ar === "string") {
+		ar = new SanArray(array);
+		ar = ar.solve();
+		document.getElementById("input").innerHTML = ar.toString();
 	}
 }
