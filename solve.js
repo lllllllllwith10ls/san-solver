@@ -316,11 +316,11 @@ class Separator {
 			}
 			ones.pop();
 			if(this.parent instanceof SanArray) {
-				this.separators.splice(index,1,...seps);
-				this.array.splice(index-1,0,...ones);
+				this.parent.separators.splice(index,1,...seps);
+				this.parent.array.splice(index-1,0,...ones);
 			} else {
-				this.separators.splice(index,1,...seps);
-				this.array.splice(index,0,...ones);
+				this.parent.separators.splice(index,1,...seps);
+				this.parent.array.splice(index,0,...ones);
 			}
 		} else if(this.separators[i].array === [1]) {
 			this.array[i+1]--;
