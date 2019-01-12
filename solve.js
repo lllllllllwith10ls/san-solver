@@ -78,6 +78,11 @@ class SanArray {
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
 			while(this.array[i-1] <= 1 && this.array[i] > 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
+				console.log(this.array[i-1]);
+				console.log(this.array[i]);
+				console.log(this.separator[i-1]);
+				console.log(this.separator[i]);
+				
 				this.array.splice(i-1,1);
 				this.separators.splice(i-1,1);
 				i--;
@@ -350,5 +355,7 @@ function solve() {
 		array = new SanArray(array);
 		array = array.solve();
 		document.getElementById("input").innerHTML = array.toString();
+	} else {
+		document.getElementById("input").innerHTML = array;
 	}
 }
