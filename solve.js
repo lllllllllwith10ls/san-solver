@@ -72,17 +72,13 @@ class SanArray {
 	clean() {
 		let arraylength = this.array.length-1;
 		while(this.array[arraylength] === 1) {
-			this.array.pop();
-			this.separators.pop();
+			console.log(this.array[arraylength]);
+			console.log(this.array.pop());
+			console.log(this.separators.pop());
 			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
 			while(this.array[i-1] <= 1 && this.array[i] > 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
-				console.log(this.array[i-1]);
-				console.log(this.array[i]);
-				console.log(this.separator[i-1]);
-				console.log(this.separator[i]);
-				
 				this.array.splice(i-1,1);
 				this.separators.splice(i-1,1);
 				i--;
