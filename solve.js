@@ -77,9 +77,10 @@ class SanArray {
 			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
-			while(this.array[i-1] === 1 && this.array[i] > 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
+			while(this.array[i-1] <= 1 && this.array[i] > 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
 				this.array.splice(i-1,1);
 				this.separators.splice(i-1,1);
+				i--;
 			}
 		}
 		for(let i = 1; i < this.separators.length; i++) {
@@ -222,9 +223,10 @@ class Separator {
 			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
-			while(this.array[i] === 1 && this.array[i+1] !== 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
+			while(this.array[i] <= 1 && this.array[i+1] > 1 && Separator.level(this.separators[i],this.separators[i-1]) === this.separators[i]) {
 				this.array.splice(i,1);
 				this.separators.splice(i-1,1);
+				i--;
 			}
 		}
 		for(let i = 1; i < this.separators.length; i++) {
@@ -344,7 +346,9 @@ class Separator {
 
 function solve() {
 	let array = document.getElementById("input").innerHTML;
-	array = new SanArray(array);
-	array = array.solve();
-	document.getElementById("input").innerHTML = array.toString();
+	if(typof array = "string") {
+		array = new SanArray(array);
+		array = array.solve();
+		document.getElementById("input").innerHTML = array.toString();
+	}
 }
