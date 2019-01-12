@@ -36,7 +36,7 @@ class SanArray {
 				}
 				if(parentheses === 0) {
 					separator = false;
-					let sep = str.substring(marker+1,i);
+					let sep = str.substring(marker,i+1);
 					this.separators.push(new Separator(sep,this));
 					str = str.replace(sep," ");
 				}
@@ -101,7 +101,7 @@ class Separator {
 				}
 				if(parentheses === 0) {
 					separator = false;
-					let sep = str.substring(marker+1,i);
+					let sep = str.substring(marker,i+1);
 					this.separators.push(new Separator(sep,this));
 					str = str.replace(" ",sep);
 				}
