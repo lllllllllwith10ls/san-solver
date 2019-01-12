@@ -121,8 +121,8 @@ class SanArray {
 		let str = "s(";
 		str+=this.base+","+this.iterator;
 		for(let i = 0; i < this.array.length; i++) {
-			if(this.separator[i]) {
-				str+=this.separator[i].toString();
+			if(this.separators[i]) {
+				str+=this.separators[i].toString();
 			}
 			if(this.array[i]) {
 				str+=this.array[i]+"";
@@ -204,8 +204,8 @@ class Separator {
 				if(this.array[i]) {
 					str+=this.array[i]+"";
 				}
-				if(this.separator[i]) {
-					str+=this.separator[i].toString();
+				if(this.separators[i]) {
+					str+=this.separators[i].toString();
 				}
 			}
 			str += "}";
