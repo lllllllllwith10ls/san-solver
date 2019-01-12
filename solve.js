@@ -55,8 +55,8 @@ class SanArray {
 					marker = i;
 				}
 			}
+			console.log(str);
 		}
-		console.log(str);
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
 			if(array[i][1] === "s") {
@@ -121,8 +121,8 @@ class Separator {
 					marker = i;
 				}
 			}
+			console.log(str);
 		}
-		console.log(str);
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
 			if(array[i][1] === "s") {
