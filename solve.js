@@ -55,7 +55,6 @@ class SanArray {
 					marker = i;
 				}
 			}
-			console.log(str);
 		}
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
@@ -183,7 +182,6 @@ class Separator {
 					marker = i;
 				}
 			}
-			console.log(str);
 		}
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
