@@ -111,8 +111,8 @@ class SanArray {
 			} else {
 				let newSep = new Separator(this.separators[i].toString(),this);
 				this.array[i]--;
-				this.separators.splice(i-1,0,newSep);
-				this.array.splice(i-1,1,2);
+				this.separators.splice(i,0,newSep);
+				this.array.splice(i,1,2);
 				this.separators[i].solve(this.base,this.iterator);
 			}
 		}
@@ -312,7 +312,7 @@ class Separator {
 			let seps = [];
 			let ones = [];
 			
-			for(let j = 0; j <= iterator; j++) {
+			for(let j = 0; j < iterator; j++) {
 				seps.push(reduced);
 				ones.push(1);
 			}
@@ -333,8 +333,8 @@ class Separator {
 		} else {
 			let newSep = new Separator(this.separators[i].toString(),this);
 			this.array[i+1]--;
-			this.separators.splice(i-1,0,newSep);
-			this.array.splice(i,0,2);
+			this.separators.splice(i,0,newSep);
+			this.array.splice(i+1,0,2);
 			this.separators[i].solve(this.base,this.iterator);
 		}
 	}
