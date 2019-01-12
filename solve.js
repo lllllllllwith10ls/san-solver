@@ -43,7 +43,7 @@ class SanArray {
 			} else {
 				if(str[i] === ",") {
 					str = str.replace(","," ");
-					this.separators.push(new Separator(1),this);
+					this.separators.push(new Separator("1"),this);
 				}
 				if(str[i-1] === "s" && str[i] === "(") {
 					subArray = true;
