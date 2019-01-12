@@ -348,7 +348,7 @@ function solve() {
 	let array = document.getElementById("input").innerHTML;
 	if(typeof array === "string") {
 		array = new SanArray(array);
-		array = ar.solve();
+		array = array.solve();
 		document.getElementById("input").innerHTML = array.toString();
 	}
 }
