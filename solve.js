@@ -114,7 +114,6 @@ class SanArray {
 				this.separators.splice(i-1,0,newSep);
 				this.array.splice(i-1,2);
 				this.separators[i+1].solve(this.base,this.iterator);
-				let newSep = new SanArray(this.toString);
 			}
 		}
 	}
@@ -336,7 +335,6 @@ class Separator {
 			this.separators.splice(i-1,0,newSep);
 			this.array.splice(i,0,2);
 			this.separators[i+1].solve(this.base,this.iterator);
-			let newSep = new SanArray(this.toString);
 		}
 	}
 }
