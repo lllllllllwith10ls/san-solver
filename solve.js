@@ -104,11 +104,11 @@ class Separator {
 					separator = false;
 					let sep = str.substring(marker,i+1);
 					this.separators.push(new Separator(sep,this));
-					str = str.replace(" ",sep);
+					str = str.replace(sep," ");
 				}
 			} else {
 				if(str[i] === ",") {
-					str = str.replace(" ",str[i]);
+					str = str.replace(","," ");
 					this.separators.push(new Separator("1",this));
 				}
 				if(str[i-1] === "s" && str[i] === "(") {
