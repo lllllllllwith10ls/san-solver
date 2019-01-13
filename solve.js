@@ -79,7 +79,7 @@ class SanArray {
 	}
 	clean() {
 		let arraylength = this.array.length-1;
-		while(this.array[arraylength] === 1) {
+		while(this.array[arraylength] === 1 && arraylength > 0) {
 			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
