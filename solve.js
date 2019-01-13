@@ -226,7 +226,7 @@ class Separator {
 				i--;
 			}
 		}
-		for(let i = 1; i < this.separators.length; i++) {
+		for(let i = 0; i < this.separators.length; i++) {
 			this.separators[i].clean();
 		}
 	}
@@ -338,6 +338,7 @@ class Separator {
 			this.array.splice(i,0,2);
 			this.separators[i-1].solve(base,iterator);
 		}
+		this.clean();
 	}
 }
 
