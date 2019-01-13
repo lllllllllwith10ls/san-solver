@@ -336,7 +336,7 @@ class Separator {
 			this.array[i]--;
 			this.separators.splice(i-1,0,newSep);
 			this.array.splice(i,0,2);
-			this.separators[i-1].solve(this.base,this.iterator);
+			this.separators[i-1].solve(base,iterator);
 		}
 	}
 }
