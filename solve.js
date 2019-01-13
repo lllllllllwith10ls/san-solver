@@ -56,7 +56,7 @@ class SanArray {
 				}
 			}
 		}
-		str.replace(/c/g,",");
+		str = str.replace(/c/g,",");
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
 			if(array[i][0] === "s") {
