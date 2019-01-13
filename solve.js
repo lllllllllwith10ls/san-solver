@@ -89,7 +89,7 @@ class SanArray {
 		} else if(this.array.length === 0) {
 			return this.base**this.iterator;	
 		} else if(this.separators[0].array[0] === 1 && this.separators[0].array.length === 1 && this.array[0] > 1) {
-			let it = new SanArray(this.toString);
+			let it = new SanArray(this.toString());
 			it.iterator--;
 			this.iterator = it;
 			this.array[0]--;
