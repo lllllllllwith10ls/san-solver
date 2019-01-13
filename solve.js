@@ -1,7 +1,3 @@
-function replaceAt(char,pos,str) {
-	return str.substr(0, pos) + char+ str.substr(pos + char.length);
-}
-
 class SanArray {
 	constructor(str,parent) {
 		this.array = [];
@@ -92,7 +88,7 @@ class SanArray {
 			this.iterator.solve();
 		} else if(this.array.length === 0) {
 			return this.base**this.iterator;	
-		} else if(this.separators[0].array === [1] && this.array[0] > 1) {
+		} else if(this.separators[0].array.length === 1 && this.separators[0].array[0] === 0 && this.array[0] > 1) {
 			let it = new SanArray(this.toString);
 			it.iterator--;
 			this.iterator = it;
@@ -104,7 +100,7 @@ class SanArray {
 			}
 			if(this.array[i] instanceof SanArray) {
 				this.array[i].solve();
-			} else if(this.separators[i].array === [1]) {
+			} else if(this.separators[i].array.length === 1 && this.separators[i].array[0] === 0 ) {
 				this.array[i]--;
 				this.array[i-1] = this.iterator;
 				for(let j = 0; j < i-1; j++) {
@@ -118,6 +114,7 @@ class SanArray {
 				this.separators[i].solve(this.base,this.iterator);
 			}
 		}
+		this.clean();
 		return this;
 	}
 	toString() {
