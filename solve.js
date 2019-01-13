@@ -260,9 +260,9 @@ class Separator {
 					mb.push(i);
 				}
 			}
-			if(Separator.level(a.array[ma[0]],b.array[mb[0]]) === a.array[ma[0]]) {
+			if(Separator.level(a.separators[ma[0]],b.separators[mb[0]]) === a.separators[ma[0]]) {
 				return a;
-			} else if(Separator.level(a.array[ma[0]],b.array[mb[0]]) === b.array[ma[0]]) {
+			} else if(Separator.level(a.separators[ma[0]],b.separators[mb[0]]) === b.separators[ma[0]]) {
 				return b;
 			} else if(ma.length > mb.length) {
 				return a;
