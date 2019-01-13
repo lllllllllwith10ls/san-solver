@@ -245,9 +245,9 @@ class Separator {
 		} else {
 			let ma = [0];
 			for(let i = 1; i < a.array.length; i++) {
-				if(Separator.level(a.array[mb[0]],a.array[i]) === a.array[i]) {
+				if(Separator.level(a.array[ma[0]],a.array[i]) === a.array[i]) {
 					ma = [i];
-				} else if(Separator.level(a.array[mb[0]],a.array[i]) === "equal") {
+				} else if(Separator.level(a.array[ma[0]],a.array[i]) === "equal") {
 					ma.push(i);
 				}
 			}
