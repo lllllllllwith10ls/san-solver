@@ -324,9 +324,9 @@ class Separator {
 				this.parent.separators.splice(index,1,...seps);
 				this.parent.array.splice(index+1,0,...ones);
 			}
-		} else if(this.separators[i].array.length === 1 && this.separators[i].array[0] === 1) {
-			this.array[i+1]--;
-			this.array[i] = iterator;
+		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
+			this.array[i]--;
+			this.array[i-1] = iterator;
 			for(let j = 0; j < i-1; j++) {
 				this.array[j] = base;
 			}
