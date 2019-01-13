@@ -269,15 +269,15 @@ class Separator {
 			} else if(ma.length < mb.length) {
 				return b;
 			} else {
-				let part1 = new Separator(a.toString);
-				let part2 = new Separator(a.toString);
+				let part1 = new Separator(a.toString());
+				let part2 = new Separator(a.toString());
 				part1.array = part1.array.slice(0,ma[0]+1);
 				part2.array = part2.array.slice(ma[0]+1);
 				part1.separators = part1.separators.slice(0,ma[0]);
 				part2.separators = part2.separators.slice(ma[0]+1);
 				
-				let part3 = new Separator(b.toString);
-				let part4 = new Separator(b.toString);
+				let part3 = new Separator(b.toString());
+				let part4 = new Separator(b.toString());
 				part3.array = part3.array.slice(0,mb[0]+1);
 				part4.array = part4.array.slice(mb[0]+1);
 				part3.separators = part3.separators.slice(0,mb[0]);
