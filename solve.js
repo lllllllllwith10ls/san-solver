@@ -167,6 +167,7 @@ class Separator {
 					let sep = str.substring(marker,i+1);
 					this.separators.push(new Separator(sep,this));
 					str = str.replace(sep," ");
+					i = marker;
 				}
 			} else {
 				if(str[i] === ",") {
@@ -213,7 +214,7 @@ class Separator {
 	}
 	clean() {
 		let arraylength = this.array.length-1;
-		while(this.array[arraylength-1] === 1 && (this.array.length > 1 || this.array[0] > 1)) {
+		while(this.array[arraylength] === 1 && this.array.length > 1) {
 			this.array.pop();
 			this.separators.pop();
 			arraylength = this.array.length-1;
