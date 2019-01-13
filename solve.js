@@ -23,6 +23,9 @@ class SanArray {
 				if(parentheses === 0) {
 					subArray = false;
 				}
+				if(str[i] === ",") {
+					str = str.replace(",","c");
+				}
 			} else if(separator) {
 				if(str[i] === "{") {
 					parentheses++;
@@ -53,6 +56,7 @@ class SanArray {
 				}
 			}
 		}
+		str.replace(/c/g,",");
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
 			if(array[i][0] === "s") {
