@@ -96,11 +96,11 @@ class SanArray {
 	solve() {
 		this.clean();
 		if(this.iterator instanceof SanArray) {
-			this.iterator.solve();
+			this.iterator = this.iterator.solve();
 		} else if(this.iterator <= 1) {
-			this = this.base;	
+			return this.base;	
 		} else if(this.array.length === 0) {
-			this = this.base**this.iterator;	
+			return this.base**this.iterator;	
 		} else if(this.separators[0].array[0] === 1 && this.separators[0].array.length === 1 && this.array[0] > 1) {
 			let it = new SanArray(this.toString(),this);
 			it.iterator--;
@@ -112,7 +112,7 @@ class SanArray {
 				i++;
 			}
 			if(this.array[i] instanceof SanArray) {
-				this.array[i].solve();
+				this.array[i] = this.array[i].solve();
 			} else if(this.separators[i].array.length === 1 && this.separators[i].array[0] === 1) {
 				this.array[i]--;
 				this.array[i-1] = this.iterator;
@@ -318,7 +318,7 @@ class Separator {
 			i++;
 		}
 		if(this.array[i] instanceof SanArray) {
-			this.array[i].solve();
+			this.array[i] = this.array[i].solve();
 		} else if(i === 0) {
 			let index = this.parent.separators.indexOf(this);
 			let reduced = new Separator(this.toString(),this.parent);
