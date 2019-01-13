@@ -97,8 +97,6 @@ class SanArray {
 		this.clean();
 		if(this.iterator instanceof SanArray) {
 			this.iterator = this.iterator.solve();
-		} else if(this.iterator <= 1) {
-			return this.base;	
 		} else if(this.array.length === 0) {
 			return this.base**this.iterator;	
 		} else if(this.separators[0].array[0] === 1 && this.separators[0].array.length === 1 && this.array[0] > 1) {
@@ -119,6 +117,7 @@ class SanArray {
 				for(let j = 0; j < i-1; j++) {
 					this.array[j] = this.base;
 				}
+				this.iterator = this.base;
 			} else {
 				let newSep = new Separator(this.separators[i].toString(),this);
 				this.array[i]--;
