@@ -100,7 +100,7 @@ class SanArray {
 			}
 			if(this.array[i] instanceof SanArray) {
 				this.array[i].solve();
-			} else if(this.separators[i].array.length === 1 && this.separators[i].array[0] === 0 ) {
+			} else if(this.separators[i].array.length === 1 && this.separators[i].array[0] === 1) {
 				this.array[i]--;
 				this.array[i-1] = this.iterator;
 				for(let j = 0; j < i-1; j++) {
@@ -324,7 +324,7 @@ class Separator {
 				this.parent.separators.splice(index,1,...seps);
 				this.parent.array.splice(index+1,0,...ones);
 			}
-		} else if(this.separators[i].array === [1]) {
+		} else if(this.separators[i].array.length === 1 && this.separators[i].array[0] === 1) {
 			this.array[i+1]--;
 			this.array[i] = iterator;
 			for(let j = 0; j < i-1; j++) {
