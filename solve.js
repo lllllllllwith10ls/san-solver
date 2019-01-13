@@ -342,11 +342,8 @@ class Separator {
 
 function solve() {
 	let array = document.getElementById("input").value;
-	if(typeof array === "string") {
-		array = new SanArray(array);
-		array = array.solve();
-		document.getElementById("input").value = array.toString();
-	} else {
-		document.getElementById("input").value = array;
-	}
+	array = new SanArray(array);
+	array = array.solve();
+	document.getElementById("input").value = array.toString();
+
 }
