@@ -39,6 +39,7 @@ class SanArray {
 					let sep = str.substring(marker,i+1);
 					this.separators.push(new Separator(sep,this));
 					str = str.replace(sep," ");
+					i = marker;
 				}
 			} else {
 				if(str[i] === ",") {
