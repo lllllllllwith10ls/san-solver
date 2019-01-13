@@ -246,17 +246,17 @@ class Separator {
 		} else {
 			let ma = [0];
 			for(let i = 1; i < a.array.length; i++) {
-				if(Separator.level(a.array[ma[0]],a.array[i]) === a.array[i]) {
+				if(Separator.level(a.separators[ma[0]],a.separators[i]) === a.array[i]) {
 					ma = [i];
-				} else if(Separator.level(a.array[ma[0]],a.array[i]) === "equal") {
+				} else if(Separator.level(a.separators[ma[0]],a.separators[i]) === "equal") {
 					ma.push(i);
 				}
 			}
 			let mb = [0];
 			for(let i = 1; i < b.array.length; i++) {
-				if(Separator.level(b.array[mb[0]],b.array[i]) === b.array[i]) {
+				if(Separator.level(b.separators[mb[0]],b.separators[i]) === b.array[i]) {
 					mb = [i];
-				} else if(Separator.level(b.array[mb[0]],b.array[i]) === "equal") {
+				} else if(Separator.level(b.separators[mb[0]],b.separators[i]) === "equal") {
 					mb.push(i);
 				}
 			}
