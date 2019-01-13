@@ -323,7 +323,7 @@ class Separator {
 				this.parent.array.splice(index,0,...ones);
 			} else {
 				this.parent.separators.splice(index,1,...seps);
-				this.parent.array.splice(index+1,0,...ones);
+				this.parent.array.splice(index-1,0,...ones);
 			}
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			this.array[i]--;
