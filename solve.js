@@ -73,9 +73,6 @@ class SanArray {
 	clean() {
 		let arraylength = this.array.length-1;
 		while(this.array[arraylength] === 1) {
-			console.log(this.array[arraylength]);
-			console.log(this.array.pop());
-			console.log(this.separators.pop());
 			arraylength = this.array.length-1;
 		}
 		for(let i = this.separators.length-1; i >= 1; i--) {
@@ -90,8 +87,6 @@ class SanArray {
 		}
 	}
 	solve() {
-		console.log(this.array);
-		console.log(this.array.length-1);
 		this.clean();
 		if(this.iterator instanceof SanArray) {
 			this.iterator.solve();
