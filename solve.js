@@ -297,7 +297,11 @@ class Separator {
 		}
 	}
 	static level(a,b) {
-		if(a.array.length > 1 && b.array.length === 1) {
+		if(a.ga > b.ga) {
+			return a;
+		} else if(a.ga < b.ga) {
+			return b;
+		} else if(a.array.length > 1 && b.array.length === 1) {
 			return a;
 		} else if(a.array.length === 1 && b.array.length > 1) {
 			return b;
@@ -402,12 +406,12 @@ class Separator {
 				let t = this.layer;
 				let a = this;
 				let a1 = m;
-				while(a.ga >= this.ga) {
+				while(a.ga >= m.ga) {
 					a1 = a;
 					a = a.parent;
 					t--;
 				}
-				if(a.ga === this.ga-1) {
+				if(a.ga === m.ga-1) {
 					m.solving = true;
 					let a_t = a.toString();
 					a_t = a_t.split(m.toString());
