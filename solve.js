@@ -397,7 +397,7 @@ class Separator {
 			}
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(this.separators[i-1].ga > 0) {
-				let newSep = new Separator(this.separators[i-1].toString(),this);
+				let newSep = new Separator("{1^"+this.separators[i-1].toString()+"}",this);
 				this.array[i]--;
 				this.separators.splice(i-1,0,newSep);
 				this.array.splice(i,0,2);
