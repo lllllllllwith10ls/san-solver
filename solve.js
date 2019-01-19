@@ -401,7 +401,6 @@ class Separator {
 				this.array[i]--;
 				this.separators.splice(i-1,0,newSep);
 				this.array.splice(i,0,2);
-				this.separators[i-1].solving = true;
 				let m = this.separators[i-1];
 				let t = this.layer;
 				let a = this;
@@ -417,7 +416,7 @@ class Separator {
 					a_t = a_t.split(m.toString());
 					let p = a_t[0];
 					let q = a_t[1];
-					a = new Separator((p+"1").repeat(iterator-1)+","+("2"+q).repeat(iterator-1),a.parent);
+					a = new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent);
 				} else {
 					a1.solving = true;
 					let a_t = a.toString();
