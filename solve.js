@@ -443,6 +443,7 @@ class Separator {
 		this.clean();
 	}
 }
+let dummyArray = new SanArray("s(3,3)");
 
 function solve() {
 	let array = document.getElementById("input").value;
