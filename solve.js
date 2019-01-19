@@ -385,7 +385,7 @@ class Separator {
 			let ones = [];
 			
 			for(let j = 0; j < iterator; j++) {
-				seps.push(new Separator(reduced.toString,this.parent));
+				seps.push(new Separator(reduced.toString(),this.parent));
 				ones.push(1);
 			}
 			ones.pop();
