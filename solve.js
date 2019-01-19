@@ -421,7 +421,7 @@ class Separator {
 				} else {
 					a1.solving = true;
 					let a_t = a.toString();
-					a_t = a_t.split(a.toString());
+					a_t = a_t.split(a1.toString());
 					let p = a_t[0];
 					let q = a_t[1];
 					a1.solving = false;
