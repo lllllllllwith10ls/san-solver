@@ -6,6 +6,7 @@ class SanArray {
 		let parentheses = 0;
 		let separator = false;
 		let marker = 0;
+		this.layer = 0;
 		if(!parent) {
 			this.parent = null;
 		} else {
@@ -30,6 +31,9 @@ class SanArray {
 				}
 				if(str[i] === "}") {
 					str = str.replace("}","d");
+				}
+				if(str[i] === "`") {
+					str = str.replace("`","g");
 				}
 			} else if(separator) {
 				if(str[i] === "{") {
@@ -155,6 +159,9 @@ class Separator {
 		let separator = false;
 		let marker = 0;
 		this.parent = parent;
+		this.ga = 1;
+		this.layer = parent.layer+1;
+		this.solving = false;
 		str = str.substring(1, str.length - 1);
 		for(let i = 0; i < str.length; i++) {
 			if(subArray) {
@@ -166,6 +173,17 @@ class Separator {
 				}
 				if(parentheses === 0) {
 					subArray = false;
+				}
+				if(str[i] === ",") {
+					str = str.replace(",","c");
+				}if(str[i] === "{") {
+					str = str.replace("{","b");
+				}
+				if(str[i] === "}") {
+					str = str.replace("}","d");
+				}
+				if(str[i] === "`") {
+					str = str.replace("`","g");
 				}
 			} else if(separator) {
 				if(str[i] === "{") {
@@ -186,6 +204,16 @@ class Separator {
 					str = str.replace(","," ");
 					this.separators.push(new Separator("1",this));
 				}
+				if(str[i] === "`") {
+					let j = i;
+					let ga = 0;
+					while (str[j] === "`") {
+						ga++;
+						j++;
+					}
+					str = str.replace("`".repeat(ga)," ");
+					this.separators.push(new Separator("1^"+"`".repeat(ga),this));
+				}
 				if(str[i-1] === "s" && str[i] === "(") {
 					subArray = true;
 					parentheses++;
@@ -195,6 +223,19 @@ class Separator {
 					parentheses++;
 					marker = i;
 				}
+			}
+		}
+		str = str.replace(/c/g,",");
+		str = str.replace(/b/g,"{");
+		str = str.replace(/d/g,"}");
+		str = str.replace(/g/g,"`");
+		
+		if(str[str.length-1] === "`") {
+			this.ga = 1;
+			i = str.length-2;
+			while(str[i] !== "^") {
+				i--;
+				this.ga++;
 			}
 		}
 		let array = str.split(" ");
@@ -208,10 +249,15 @@ class Separator {
 		this.array = array;
 	}
 	toString() {
+		let str;
 		if(this.array.length === 1 && this.array[0] === 1) {
-			return ",";
+			if(this.ga === 0) {
+				str = ",";
+			} else {
+				str = "`".repeat(this.ga);
+			}
 		} else {
-			let str = "{";
+			str = "{";
 			for(let i = 0; i < this.array.length; i++) {
 				if(this.array[i]) {
 					str+=this.array[i]+"";
@@ -220,7 +266,14 @@ class Separator {
 					str+=this.separators[i].toString();
 				}
 			}
+			if(this.ga > 0) {
+				str += "^"+"`".repeat(this.ga);
+			}
 			str += "}";
+		}
+		if(this.solving) {
+			return "**"+str+"**";
+		} else {
 			return str;
 		}
 	}
@@ -335,11 +388,48 @@ class Separator {
 				this.parent.separators.splice(index,1,...seps);
 				this.parent.array.splice(index,0,...ones);
 			}
+		} else if {
+			
+		} else if {
+			
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
-			this.array[i]--;
-			this.array[i-1] = iterator;
-			for(let j = 0; j < i-1; j++) {
-				this.array[j] = base;
+			if(this.separators[i-1].ga > 0) {
+				let newSep = new Separator(this.separators[i-1].toString(),this);
+				this.array[i]--;
+				this.separators.splice(i-1,0,newSep);
+				this.array.splice(i,0,2);
+				this.separators[i-1].solving = true;
+				let m = this.separators[i-1];
+				let t = this.layer;
+				let a = this;
+				let a1 = m;
+				while(a.ga >= this.ga) {
+					a1 = a;
+					a = a.parent;
+					t--;
+				}
+				if(a.ga === this.ga-1) {
+					m.solving = true;
+					let a_t = a.toString();
+					a_t = a_t.split(m.toString());
+					let p = a_t[0];
+					let q = a_t[1];
+					a = new Separator((p+"1").repeat(iterator-1)+","+("2"+q).repeat(iterator-1),a.parent);
+				} else {
+					a1.solving = true;
+					let a_t = a.toString();
+					a_t = a_t.split(a.toString());
+					let p = a_t[0];
+					let q = a_t[1];
+					a1.solving = false;
+					a = new Separator(p+"{1"+a1.toString()+"2"+"`".repeat(m.ga-1)+"}"+q);
+				}
+			} else {
+				this.array[i]--;
+				this.array[i-1] = iterator;
+				for(let j = 0; j < i-1; j++) {
+					this.array[j] = base;
+				}
 			}
 		} else {
 			let newSep = new Separator(this.separators[i-1].toString(),this);
