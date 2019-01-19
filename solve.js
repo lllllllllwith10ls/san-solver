@@ -149,7 +149,7 @@ class SanArray {
 	}
 	
 }
-let dummyArray = new SanArray("s(3,3)");
+
 class Separator {
 	constructor(str,parent) {
 		this.array = [];
