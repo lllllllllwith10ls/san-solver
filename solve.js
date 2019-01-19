@@ -213,7 +213,7 @@ class Separator {
 					}
 					
 					str = str.replace("`".repeat(ga)," ");
-					this.separators.push(new Separator("1^"+"`".repeat(ga),this));
+					this.separators.push(new Separator("{1^"+"`".repeat(ga)+"}",this));
 				}
 				if(str[i] === "^") {
 					break;
