@@ -387,10 +387,6 @@ class Separator {
 				this.parent.separators.splice(index,1,...seps);
 				this.parent.array.splice(index,0,...ones);
 			}
-		} else if {
-			
-		} else if {
-			
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(this.separators[i-1].ga > 0) {
 				let newSep = new Separator(this.separators[i-1].toString(),this);
