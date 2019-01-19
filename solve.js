@@ -211,6 +211,7 @@ class Separator {
 						ga++;
 						j++;
 					}
+					
 					str = str.replace("`".repeat(ga)," ");
 					this.separators.push(new Separator("1^"+"`".repeat(ga),this));
 				}
