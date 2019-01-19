@@ -159,7 +159,7 @@ class Separator {
 		let separator = false;
 		let marker = 0;
 		this.parent = parent;
-		this.ga = 1;
+		this.ga = 0;
 		this.layer = parent.layer+1;
 		this.solving = false;
 		str = str.substring(1, str.length - 1);
@@ -231,7 +231,6 @@ class Separator {
 		str = str.replace(/g/g,"`");
 		
 		if(str[str.length-1] === "`") {
-			this.ga = 1;
 			i = str.length-2;
 			while(str[i] !== "^") {
 				i--;
