@@ -234,7 +234,7 @@ class Separator {
 		str = str.replace(/g/g,"`");
 		
 		if(str[str.length-1] === "`") {
-			i = str.length-2;
+			let i = str.length-1;
 			while(str[i] !== "^") {
 				i--;
 				this.ga++;
