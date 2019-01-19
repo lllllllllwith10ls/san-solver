@@ -416,7 +416,7 @@ class Separator {
 					a_t = a_t.split(m.toString());
 					let p = a_t[0];
 					let q = a_t[1];
-					a = new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent);
+					Object.assign(a,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent));
 				} else {
 					a1.solving = true;
 					let a_t = a.toString();
@@ -424,7 +424,7 @@ class Separator {
 					let p = a_t[0];
 					let q = a_t[1];
 					a1.solving = false;
-					a = new Separator(p+"{1"+a1.toString()+"2"+"`".repeat(m.ga-1)+"}"+q);
+					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2"+"`".repeat(m.ga-1)+"}"+q));
 				}
 			} else {
 				this.array[i]--;
