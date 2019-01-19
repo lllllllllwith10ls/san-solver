@@ -339,6 +339,7 @@ class Separator {
 			} else if(ma.length < mb.length) {
 				return b;
 			} else {
+				let dummyArray = new SanArray("s(3,3)");
 				let part1 = new Separator(a.toString(),dummyArray);
 				let part2 = new Separator(a.toString(),dummyArray);
 				part1.array = part1.array.slice(0,ma[0]+1);
@@ -443,7 +444,6 @@ class Separator {
 		this.clean();
 	}
 }
-let dummyArray = new SanArray("s(3,3)");
 
 function solve() {
 	let array = document.getElementById("input").value;
