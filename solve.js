@@ -162,6 +162,11 @@ class Separator {
 		this.ga = 0;
 		this.layer = parent.layer+1;
 		this.solving = false;
+		if(str[1] === ",") {
+			str = "{1}";
+		} else if(str[1] === "`") {
+			str = "{1^"+str+"}";
+		}
 		str = str.substring(1, str.length - 1);
 		for(let i = 0; i < str.length; i++) {
 			if(subArray) {
