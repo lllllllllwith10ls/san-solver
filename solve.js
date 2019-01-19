@@ -214,6 +214,9 @@ class Separator {
 					str = str.replace("`".repeat(ga)," ");
 					this.separators.push(new Separator("1^"+"`".repeat(ga),this));
 				}
+				if(str[i] === "^") {
+					break;
+				}
 				if(str[i-1] === "s" && str[i] === "(") {
 					subArray = true;
 					parentheses++;
