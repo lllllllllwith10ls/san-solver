@@ -430,7 +430,7 @@ class Separator {
 					let p = a_t[0];
 					let q = a_t[1];
 					a1.solving = false;
-					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2"+"`".repeat(m.ga-1)+"}"+q));
+					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2^"+"`".repeat(m.ga-1)+"}"+q,a.parent));
 				}
 			} else {
 				this.array[i]--;
