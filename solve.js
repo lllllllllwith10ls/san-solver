@@ -121,7 +121,6 @@ class SanArray {
 				for(let j = 0; j < i-1; j++) {
 					this.array[j] = this.base;
 				}
-				this.iterator = this.base;
 			} else {
 				let newSep = new Separator(this.separators[i].toString(),this);
 				this.array[i]--;
@@ -130,6 +129,7 @@ class SanArray {
 				this.separators[i].solve(this.base,this.iterator);
 			}
 		}
+		this.iterator = this.base;
 		this.clean();
 		return this;
 	}
