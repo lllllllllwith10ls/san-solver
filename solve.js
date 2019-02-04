@@ -219,7 +219,7 @@ class Separator {
 					if(str[i+1] === "," && version === "DAN") {
 						let j = i;
 						let commas = 0;
-						while (str[j] === "`") {
+						while (str[j] === ",") {
 							commas++;
 							j++;
 						}
@@ -234,7 +234,7 @@ class Separator {
 				if(str[i] === "`" && version === "mEAN") {
 					let j = i;
 					let ga = 0;
-					while (str[j] === ",") {
+					while (str[j] === "`") {
 						ga++;
 						j++;
 					}
