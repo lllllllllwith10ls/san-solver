@@ -283,8 +283,8 @@ class Separator {
 					array[i] = parseInt(array[i]);
 				}
 			}
+			this.array = array;
 		}
-		this.array = array;
 	}
 	toString() {
 		let str;
