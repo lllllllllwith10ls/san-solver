@@ -511,7 +511,7 @@ class Separator {
 						let p = aum[0];
 						let q = aum[1];
 						a1.solving = false;
-						Object.assign(a,new Separator(p+"{1"+a1.toString()+"}2"+q,a.parent)));
+						Object.assign(a,new Separator(p+"{1"+a1.toString()+"}2"+q,a.parent));
 					} else {
 						let auj = this;
 						let auj1;
