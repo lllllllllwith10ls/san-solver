@@ -362,7 +362,8 @@ class Separator {
 		}
 	}
 	static level(a,b) {
-		this.clean();
+		a.clean();
+		b.clean();
 		if(a instanceof SanArray && b instanceof SanArray) {
 			return "equal";
 		}
@@ -457,7 +458,8 @@ class Separator {
 				}
 			}
 		}
-		this.clean();
+		a.clean();
+		b.clean();
 	}
 	solve(base, iterator) {
 		this.clean();
