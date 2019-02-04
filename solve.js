@@ -321,7 +321,7 @@ class Separator {
 		} else {
 			let ma = [0];
 			for(let i = 1; i < a.separators.length; i++) {
-				if(Separator.level(a.separators[ma[0]],a.separators[i]) === a.array[i]) {
+				if(Separator.level(a.separators[ma[0]],a.separators[i]) === a.separators[i]) {
 					ma = [i];
 				} else if(Separator.level(a.separators[ma[0]],a.separators[i]) === "equal") {
 					ma.push(i);
@@ -329,7 +329,7 @@ class Separator {
 			}
 			let mb = [0];
 			for(let i = 1; i < b.separators.length; i++) {
-				if(Separator.level(b.separators[mb[0]],b.separators[i]) === b.array[i]) {
+				if(Separator.level(b.separators[mb[0]],b.separators[i]) === b.separators[i]) {
 					mb = [i];
 				} else if(Separator.level(b.separators[mb[0]],b.separators[i]) === "equal") {
 					mb.push(i);
