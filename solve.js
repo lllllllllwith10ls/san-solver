@@ -617,7 +617,13 @@ function solve() {
 function change() {
 	if(version = "mEAN") {
 		version = "DAN";
+		document.getElementById("input").value = "s(3,3{1,,,3}3)";
+	} else {
+		version = "mEAN";
+		document.getElementById("input").value = "s(3,3{1``3}3)";
 	}
+	
+	document.getElementById("input").innerHTML = "Switch notation ("+version+")";
 	
 
 }
