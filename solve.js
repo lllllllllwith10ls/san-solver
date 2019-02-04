@@ -174,7 +174,9 @@ class Separator {
 		} else if(str[0] === "`" && version === "mEAN") {
 			str = "{1^"+str+"}";
 		}
-		str = str.substring(1, str.length - 1);
+		if(str[0] !== "," || str[1] !== ",") {
+			str = str.substring(1, str.length - 1);
+		}
 		for(let i = 0; i < str.length; i++) {
 			if(str[0] === "," && str[1] === "," && version === "DAN") {
 				break;
