@@ -1,3 +1,4 @@
+let version = "mEAN";
 class SanArray {
 	constructor(str,parent) {
 		this.array = [];
@@ -141,7 +142,11 @@ class SanArray {
 				str+=this.separators[i].toString();
 			}
 			if(this.array[i]) {
-				str+=this.array[i]+"";
+				if(this.array[i] instanceof SanArray) {
+					
+				} else {
+					str+=this.array[i]+"";
+				}
 			}
 		}
 		str += ")";
@@ -159,16 +164,21 @@ class Separator {
 		let separator = false;
 		let marker = 0;
 		this.parent = parent;
-		this.ga = 0;
 		this.layer = parent.layer+1;
 		this.solving = false;
-		if(str[0] === ",") {
+		if(version === "mEAN") {
+			this.ga = 0;
+		}
+		if(str[0] === "," && str.length === 1) {
 			str = "{1}";
-		} else if(str[0] === "`") {
+		} else if(str[0] === "`" && version === "mEAN") {
 			str = "{1^"+str+"}";
 		}
 		str = str.substring(1, str.length - 1);
 		for(let i = 0; i < str.length; i++) {
+			if(str[0] === "," && str[1] === "," && version === "DAN") {
+				break;
+			}
 			if(subArray) {
 				if(str[i] === "(") {
 					parentheses++;
@@ -206,10 +216,22 @@ class Separator {
 				}
 			} else {
 				if(str[i] === ",") {
-					str = str.replace(","," ");
-					this.separators.push(new Separator("1",this));
+					if(str[i+1] === "," && version === "DAN") {
+						let j = i;
+						let commas = 0;
+						while (str[j] === "`") {
+							commas++;
+							j++;
+						}
+
+						str = str.replace(",".repeat(commas)," ");
+						this.separators.push(new Separator("{1^"+",".repeat(commas)+"}",this));
+					} else {
+						str = str.replace(","," ");
+						this.separators.push(new Separator("1",this));
+					}
 				}
-				if(str[i] === "`") {
+				if(str[i] === "`" && version === "mEAN") {
 					let j = i;
 					let ga = 0;
 					while (str[j] === "`") {
@@ -239,12 +261,16 @@ class Separator {
 		str = str.replace(/d/g,"}");
 		str = str.replace(/g/g,"`");
 		
-		if(str[str.length-1] === "`") {
+		if(str[str.length-1] === "`" && version === "mEAN") {
+			this.ga = 0;
 			let i = str.length-1;
 			while(str[i] !== "^") {
 				i--;
 				this.ga++;
 			}
+		}
+		if(str[str.length] === "," && version === "DAN") {
+			this.commas = str.length;
 		}
 		let array = str.split(" ");
 		for(let i = 0; i < array.length; i++) {
@@ -259,10 +285,14 @@ class Separator {
 	toString() {
 		let str;
 		if(this.array.length === 1 && this.array[0] === 1) {
-			if(this.ga === 0) {
-				str = ",";
-			} else {
-				str = "`".repeat(this.ga);
+			if(version === "mEAN") {
+				if(this.ga === 0) {
+					str = ",";
+				} else {
+					str = "`".repeat(this.ga);
+				}
+			} else if(version === "DAN") {
+				str = ",".repeat(this.commas);
 			}
 		} else {
 			str = "{";
@@ -274,7 +304,7 @@ class Separator {
 					str+=this.separators[i].toString();
 				}
 			}
-			if(this.ga > 0) {
+			if(this.ga > 0 && version === "mEAN") {
 				str += "^"+"`".repeat(this.ga);
 			}
 			str += "}";
@@ -296,16 +326,71 @@ class Separator {
 				this.separators.splice(i-1,1);
 				i--;
 			}
+			if(version === "DAN") {
+				if(this.separators[i].array[0] === 1 && this.separators[i].array[1] === 2 && this.separators[i].separators[0].commas > 2 ) {
+					this.separators[i] = new Separator(",".repeat(this.separators[i].separators[0].commas-1));
+				}
+			}
 		}
 		for(let i = 0; i < this.separators.length; i++) {
 			this.separators[i].clean();
 		}
 	}
+	get maxCommas() {
+		if(version === "DAN") {
+			let result = 1;
+			if(this.commas) {
+				return this.commas;
+			} else {
+				for(let i = 0; i < this.separators.length; i++) {
+					result = Math.max(result,this.separators[i].maxCommas);
+				}
+			}
+		}
+	}
+	prepare(commas) {
+		if(version === "DAN") {
+			for(let i = 0; i < this.separators.length; i++) {
+				if(this.separators[i].commas >= 2) {
+					if(this.separators[i].commas < commas) {
+						this.separators[i] = new Separator("{1"+",".repeat(this.separators[i].commas+1)+"2}");
+						
+					}
+				}
+				this.separators[i].clean();
+			}
+		}
+	}
 	static level(a,b) {
-		if(a.ga > b.ga) {
-			return a;
-		} else if(a.ga < b.ga) {
+		this.clean();
+		if(a instanceof SanArray && b instanceof SanArray) {
+			return "equal";
+		}
+		if(a instanceof SanArray) {
 			return b;
+		}
+		if(b instanceof SanArray) {
+			return a;
+		}
+		if(version === "mEAN") {
+			if(a.ga > b.ga) {
+				return a;
+			} else if(a.ga < b.ga) {
+				return b;
+			}
+		} else if(version === "DAN") {
+			if(a.commas >= 2 && b.commas >= 2) {
+				return "equal";
+			}
+			if(a.commas >= 2) {
+				return a;
+			}
+			if(b.commas >= 2) {
+				return b;
+			}
+			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
+			a.prepare();
+			b.prepare();
 		} else if(a.array.length > 1 && b.array.length === 1) {
 			return a;
 		} else if(a.array.length === 1 && b.array.length > 1) {
@@ -372,6 +457,7 @@ class Separator {
 				}
 			}
 		}
+		this.clean();
 	}
 	solve(base, iterator) {
 		this.clean();
@@ -402,35 +488,106 @@ class Separator {
 				this.parent.array.splice(index,0,...ones);
 			}
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
-			if(this.separators[i-1].ga > 0) {
-				let newSep = new Separator("{1^"+this.separators[i-1].toString()+"}",this);
-				this.array[i]--;
-				this.separators.splice(i-1,0,newSep);
-				this.array.splice(i,0,2);
-				let m = this.separators[i-1];
-				let t = this.layer;
-				let a = this;
-				let a1 = m;
-				while(a.ga >= m.ga) {
-					a1 = a;
-					a = a.parent;
-					t--;
+			if(version === "DAN") {
+				if(this.separators[i-1].commas > 1 ) {
+					let newSep = new Separator(this.separators[i-1].toString(),this);
+					this.array[i]--;
+					this.separators.splice(i-1,0,newSep);
+					this.array.splice(i,0,2);
+					let m = this.separators[i-1];
+					let m2 = this.separators[i-1].commas;
+					let t = this.layer;
+					let a = this;
+					let a1 = m;
+					while(Separator.level(a,m) === m) {
+						a1 = a;
+						a = a.parent;
+						t--;
+					}
+					if(a instanceOf SanArray) {
+						a1.solving = true;
+						let aum = a.toString();
+						aum = aum.split(a1.toString());
+						let p = aum[0];
+						let q = aum[1];
+						a1.solving = false;
+						Object.assign(a,new Separator(p+"{1"+a1.toString()+"}2"+q,a.parent)));
+					} else {
+						let auj = this;
+						let auj1;
+						for(let uj = m2-1; uj >= 1; uj--) {
+							if(uj > 1) {
+								let path = [];
+								auj1 = auj;
+								while(Separator.level(auj,auj1) === auj1) {
+									path.push(auj);
+									auj = auj.parent;
+								}
+								let buj = path[path.length-1];
+								let bujj = path[path.length-2];
+								
+								bujj.solving = true;
+								
+								buj = buj.split(bujj.toString()+"2");
+								let x = buj[0];
+								let y = buj[1];
+								bujj.solving = false;
+								let blef = new Separator(x+a+"2"+y,this);
+								if(Separator.level(auj,blef) === blef) {
+									let vj = 0;
+									while(Separator.level(path[path.length-vj-1],bujj) !== bujj) {
+										vj++;
+									}
+									path[path.length-vj-1].solving = true;
+									buj = path[path.length-1].toString();
+									buj.split(path[path.length-vj-1].toString());
+									path[path.length-vj-1].solving = false;
+									let p = buj[0];
+									let q = buj[1];
+									Object.assign(path[path.length-1],new Separator(p+x+path[path.length-vj-1].toString()+"2"+y+q,path[path.length-1].parent)));
+									break;
+								}
+							} else {
+								auj1.solving = true;
+								let thing = auj.toString.split(auj1.toString());
+								let p = thing[0];
+								let q = thing[1];
+								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
+							}
+						}
+					}
 				}
-				if(a.ga === m.ga-1) {
-					m.solving = true;
-					let a_t = a.toString();
-					a_t = a_t.split(m.toString());
-					let p = a_t[0];
-					let q = a_t[1];
-					Object.assign(a,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent));
-				} else {
-					a1.solving = true;
-					let a_t = a.toString();
-					a_t = a_t.split(a1.toString());
-					let p = a_t[0];
-					let q = a_t[1];
-					a1.solving = false;
-					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2^"+"`".repeat(m.ga-1)+"}"+q,a.parent));
+			} else if(version === "mEAN") {
+				if(this.separators[i-1].ga > 0) {
+					let newSep = new Separator(this.separators[i-1].toString(),this);
+					this.array[i]--;
+					this.separators.splice(i-1,0,newSep);
+					this.array.splice(i,0,2);
+					let m = this.separators[i-1];
+					let t = this.layer;
+					let a = this;
+					let a1 = m;
+					while(a.level >= m.level) {
+						a1 = a;
+						a = a.parent;
+						t--;
+					}
+					if(a.ga === m.ga-1) {
+						m.solving = true;
+						let a_t = a.toString();
+						a_t = a_t.split(m.toString());
+						let p = a_t[0];
+						let q = a_t[1];
+						Object.assign(a,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent));
+					} else {
+						a1.solving = true;
+						let a_t = a.toString();
+						a_t = a_t.split(a1.toString());
+						let p = a_t[0];
+						let q = a_t[1];
+						a1.solving = false;
+						Object.assign(a,new Separator(p+"{1"+a1.toString()+"2^"+"`".repeat(m.ga-1)+"}"+q,a.parent));
+					}
 				}
 			} else {
 				this.array[i]--;
@@ -455,5 +612,12 @@ function solve() {
 	array = new SanArray(array);
 	array = array.solve();
 	document.getElementById("input").value = array.toString();
+
+}
+function change() {
+	if(version = "mEAN") {
+		version = "DAN";
+	}
+	
 
 }
