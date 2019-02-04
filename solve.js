@@ -273,7 +273,7 @@ class Separator {
 		}
 		if(str[str.length-1] === "," && version === "DAN") {
 			this.commas = str.length;
-			array = [1];
+			this.array = [1];
 		} else {
 			let array = str.split(" ");
 			for(let i = 0; i < array.length; i++) {
