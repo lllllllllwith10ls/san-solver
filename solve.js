@@ -225,7 +225,7 @@ class Separator {
 						}
 
 						str = str.replace(",".repeat(commas)," ");
-						this.separators.push(new Separator("{1^"+",".repeat(commas)+"}",this));
+						this.separators.push(new Separator(",".repeat(commas),this));
 					} else {
 						str = str.replace(","," ");
 						this.separators.push(new Separator("1",this));
