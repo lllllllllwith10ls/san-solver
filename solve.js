@@ -234,7 +234,7 @@ class Separator {
 				if(str[i] === "`" && version === "mEAN") {
 					let j = i;
 					let ga = 0;
-					while (str[j] === "`") {
+					while (str[j] === ",") {
 						ga++;
 						j++;
 					}
