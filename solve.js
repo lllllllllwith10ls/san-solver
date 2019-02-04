@@ -544,7 +544,7 @@ class Separator {
 									path[path.length-vj-1].solving = false;
 									let p = buj[0];
 									let q = buj[1];
-									Object.assign(path[path.length-1],new Separator(p+x+path[path.length-vj-1].toString()+"2"+y+q,path[path.length-1].parent)));
+									Object.assign(path[path.length-1],new Separator(p+x+path[path.length-vj-1].toString()+"2"+y+q,path[path.length-1].parent));
 									break;
 								}
 							} else {
