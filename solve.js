@@ -504,7 +504,7 @@ class Separator {
 						a = a.parent;
 						t--;
 					}
-					if(a instanceOf SanArray) {
+					if(a instanceof SanArray) {
 						a1.solving = true;
 						let aum = a.toString();
 						aum = aum.split(a1.toString());
