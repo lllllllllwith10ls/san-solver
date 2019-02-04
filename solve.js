@@ -271,7 +271,7 @@ class Separator {
 				this.ga++;
 			}
 		}
-		if(str[str.length] === "," && version === "DAN") {
+		if(str[str.length-1] === "," && version === "DAN") {
 			this.commas = str.length;
 		}
 		let array = str.split(" ");
