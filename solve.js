@@ -523,7 +523,7 @@ class Separator {
 						let auj = m;
 						let path = [];
 						path.unshift(auj);
-						for(let uj = m2-1; uj >= 1; uj--) {
+						for(let uj = m2; uj >= 1; uj--) {
 							if(uj > 1) {
 								while(Separator.level(auj,path[0]) !== path[0]) {
 									auj = auj.parent;
@@ -555,7 +555,7 @@ class Separator {
 								}
 							} else {
 								path[1].solving = true;
-								let thing = auj.toString.split(path[1].toString());
+								let thing = auj.toString().split(path[1].toString());
 								let p = thing[0];
 								let q = thing[1];
 								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
