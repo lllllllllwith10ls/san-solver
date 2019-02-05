@@ -548,6 +548,8 @@ class Separator {
 									let p = buj[0];
 									let q = buj[1];
 									Object.assign(path[0],new Separator(p+"1"+x+path[vj-1].toString()+"2"+y+"2"+q,path[0].parent));
+									console.log(p);
+									console.log(x);
 									break;
 								}
 							}
