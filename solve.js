@@ -525,7 +525,7 @@ class Separator {
 						path.unshift(auj);
 						for(let uj = m2-1; uj >= 1; uj--) {
 							if(uj > 1) {
-								while(Separator.level(auj,auj[0]) !== auj[0]) {
+								while(Separator.level(auj,path[0]) !== path[0]) {
 									auj = auj.parent;
 								}
 								
