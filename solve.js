@@ -519,7 +519,7 @@ class Separator {
 						let p = aum[0];
 						let q = aum[1];
 						a1.solving = false;
-						Object.assign(a,new Separator(p+"{1"+a1.toString()+"}2"+q,a.parent));
+						Object.assign(a,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
 					} else {
 						let auj = m;
 						let path = [];
@@ -559,6 +559,7 @@ class Separator {
 									}
 									Object.assign(path[path.length-1],oldSep);
 									Object.assign(path[0],new Separator(p+x+path[vj-1].toString()+"2"+y+q,path[0].parent));
+									console.log(p+x+path[vj-1].toString()+"2"+y+q);
 									break;
 								}
 							}
