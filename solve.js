@@ -543,13 +543,13 @@ class Separator {
 									}
 									path[vj-1].solving = true;
 									buj = path[0].toString();
+									console.log(buj);
 									buj.split(path[vj-1].toString());
 									path[vj-1].solving = false;
+									console.log(buj);
 									let p = buj[0];
 									let q = buj[1];
 									Object.assign(path[0],new Separator(p+"1"+x+path[vj-1].toString()+"2"+y+"2"+q,path[0].parent));
-									console.log(p);
-									console.log(x);
 									break;
 								}
 							}
