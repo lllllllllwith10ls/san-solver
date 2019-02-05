@@ -532,14 +532,14 @@ class Separator {
 							if(path[2]) {
 								path[2].solving = true;
 
-								let buj = path[1].split(bujj.toString()+"2");
+								let buj = path[1].split(path[2].toString()+"2");
 								let x = buj[0];
 								let y = buj[1];
 								path[2].solving = false;
 								let blef = new Separator(x+path[1]+"2"+y,this);
 								if(Separator.level(auj,blef) === blef) {
 									let vj = 0;
-									while(Separator.level(path[vj],path[2]) !== bujj) {
+									while(Separator.level(path[vj],path[2]) !== path[2]) {
 										vj++;
 									}
 									path[vj].solving = true;
