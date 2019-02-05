@@ -541,16 +541,22 @@ class Separator {
 									while(Separator.level(path[vj-1],path[1]) !== path[1]) {
 										vj++;
 									}
-									path[vj-1].solving = true;
-									buj = path[0].toString();
-									console.log(buj);
-									buj.split(path[vj-1].toString());
-									path[vj-1].solving = false;
-									console.log(path[vj-1].toString());
-									console.log(buj);
-									let p = buj[0];
-									let q = buj[1];
-									Object.assign(path[0],new Separator(p+"1"+x+path[vj-1].toString()+"2"+y+"2"+q,path[0].parent));
+									let p;
+									let q;
+									buj = path[0];
+									if(buj === path[vj-1]) {
+										p = "";
+										q = "";
+									else {
+										path[vj-1].solving = true;
+										buj = path[0].toString();
+										buj.split(path[vj-1].toString());
+										path[vj-1].solving = false;
+
+										p = buj[0];
+										q = buj[1];
+									}
+									Object.assign(path[0],new Separator(p+x+path[vj-1].toString()+"2"+y+q,path[0].parent));
 									break;
 								}
 							}
