@@ -362,7 +362,6 @@ class Separator {
 						
 					}
 				}
-				this.separators[i].clean();
 			}
 		}
 	}
@@ -397,7 +396,8 @@ class Separator {
 			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
 			a.prepare(maxCommas);
 			b.prepare(maxCommas);
-		} else if(a.array.length > 1 && b.array.length === 1) {
+		}
+		if(a.array.length > 1 && b.array.length === 1) {
 			return a;
 		} else if(a.array.length === 1 && b.array.length > 1) {
 			return b;
