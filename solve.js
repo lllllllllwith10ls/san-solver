@@ -547,7 +547,7 @@ class Separator {
 									if(buj === path[vj-1]) {
 										p = "";
 										q = "";
-									else {
+									} else {
 										path[vj-1].solving = true;
 										buj = path[0].toString();
 										buj.split(path[vj-1].toString());
