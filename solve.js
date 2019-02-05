@@ -350,6 +350,7 @@ class Separator {
 					result = Math.max(result,this.separators[i].maxCommas);
 				}
 			}
+			return result;
 		}
 	}
 	prepare(commas) {
@@ -394,8 +395,8 @@ class Separator {
 				return b;
 			}
 			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
-			a.prepare();
-			b.prepare();
+			a.prepare(maxCommas);
+			b.prepare(maxCommas);
 		} else if(a.array.length > 1 && b.array.length === 1) {
 			return a;
 		} else if(a.array.length === 1 && b.array.length > 1) {
