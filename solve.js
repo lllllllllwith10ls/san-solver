@@ -520,14 +520,13 @@ class Separator {
 						a1.solving = false;
 						Object.assign(a,new Separator(p+"{1"+a1.toString()+"}2"+q,a.parent));
 					} else {
-						let auj = this;
+						let auj = m;
 						let auj1;
 						for(let uj = m2-1; uj >= 1; uj--) {
 							if(uj > 1) {
 								let path = [];
 								auj1 = auj;
 								while(Separator.level(auj,auj1) !== auj) {
-									auj1 = auj;
 									path.push(auj);
 									auj = auj.parent;
 								}
