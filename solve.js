@@ -552,7 +552,7 @@ class Separator {
 									break;
 								}
 							}
-							if(j === 1) {
+							if(uj === 1) {
 								path[1].solving = true;
 								let thing = auj.toString().split(path[1].toString());
 								let p = thing[0];
