@@ -546,6 +546,7 @@ class Separator {
 									console.log(buj);
 									buj.split(path[vj-1].toString());
 									path[vj-1].solving = false;
+									console.log(path[vj-1].toString());
 									console.log(buj);
 									let p = buj[0];
 									let q = buj[1];
