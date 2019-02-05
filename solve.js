@@ -521,11 +521,10 @@ class Separator {
 						Object.assign(a,new Separator(p+"{1"+a1.toString()+"}2"+q,a.parent));
 					} else {
 						let auj = m;
-						let auj1;
+						let path = [];
 						for(let uj = m2-1; uj >= 1; uj--) {
 							if(uj > 1) {
-								let path = [];
-								auj1 = auj;
+								path.unshift(auj);
 								while(Separator.level(auj,auj1) !== auj1) {
 									console.log(auj);
 									console.log(auj1);
@@ -533,33 +532,33 @@ class Separator {
 									path.push(auj);
 									auj = auj.parent;
 								}
-								let buj = path[path.length-1];
-								let bujj = path[path.length-2];
 								
-								bujj.solving = true;
+								if(path[2]) {
+									path[2].solving = true;
 								
-								buj = buj.split(bujj.toString()+"2");
-								let x = buj[0];
-								let y = buj[1];
-								bujj.solving = false;
-								let blef = new Separator(x+a+"2"+y,this);
-								if(Separator.level(auj,blef) === blef) {
-									let vj = 0;
-									while(Separator.level(path[path.length-vj-1],bujj) !== bujj) {
-										vj++;
+									let buj = path[1].split(bujj.toString()+"2");
+									let x = buj[0];
+									let y = buj[1];
+									path[2].solving = false;
+									let blef = new Separator(x+path[1]+"2"+y,this);
+									if(Separator.level(auj,blef) === blef) {
+										let vj = 0;
+										while(Separator.level(path[vj],path[2]) !== bujj) {
+											vj++;
+										}
+										path[vj].solving = true;
+										buj = path[1].toString();
+										buj.split(path[vj].toString());
+										path[vj].solving = false;
+										let p = buj[0];
+										let q = buj[1];
+										Object.assign(path[1],new Separator(p+x+path[vj].toString()+"2"+y+q,path[1].parent));
+										break;
 									}
-									path[path.length-vj-1].solving = true;
-									buj = path[path.length-1].toString();
-									buj.split(path[path.length-vj-1].toString());
-									path[path.length-vj-1].solving = false;
-									let p = buj[0];
-									let q = buj[1];
-									Object.assign(path[path.length-1],new Separator(p+x+path[path.length-vj-1].toString()+"2"+y+q,path[path.length-1].parent));
-									break;
 								}
 							} else {
-								auj1.solving = true;
-								let thing = auj.toString.split(auj1.toString());
+								path[1].solving = true;
+								let thing = auj.toString.split(path[1].toString());
 								let p = thing[0];
 								let q = thing[1];
 								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
