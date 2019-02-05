@@ -524,36 +524,35 @@ class Separator {
 						let path = [];
 						path.unshift(auj);
 						for(let uj = m2; uj >= 1; uj--) {
-							if(uj > 1) {
-								while(Separator.level(auj,path[0]) !== path[0]) {
-									auj = auj.parent;
-								}
-								
-								path.unshift(auj);
-								if(path[2]) {
-									path[2].solving = true;
-								
-									let buj = path[1].split(bujj.toString()+"2");
-									let x = buj[0];
-									let y = buj[1];
-									path[2].solving = false;
-									let blef = new Separator(x+path[1]+"2"+y,this);
-									if(Separator.level(auj,blef) === blef) {
-										let vj = 0;
-										while(Separator.level(path[vj],path[2]) !== bujj) {
-											vj++;
-										}
-										path[vj].solving = true;
-										buj = path[1].toString();
-										buj.split(path[vj].toString());
-										path[vj].solving = false;
-										let p = buj[0];
-										let q = buj[1];
-										Object.assign(path[1],new Separator(p+x+path[vj].toString()+"2"+y+q,path[1].parent));
-										break;
+							while(Separator.level(auj,path[0]) !== path[0]) {
+								auj = auj.parent;
+							}
+
+							path.unshift(auj);
+							if(path[2]) {
+								path[2].solving = true;
+
+								let buj = path[1].split(bujj.toString()+"2");
+								let x = buj[0];
+								let y = buj[1];
+								path[2].solving = false;
+								let blef = new Separator(x+path[1]+"2"+y,this);
+								if(Separator.level(auj,blef) === blef) {
+									let vj = 0;
+									while(Separator.level(path[vj],path[2]) !== bujj) {
+										vj++;
 									}
+									path[vj].solving = true;
+									buj = path[1].toString();
+									buj.split(path[vj].toString());
+									path[vj].solving = false;
+									let p = buj[0];
+									let q = buj[1];
+									Object.assign(path[1],new Separator(p+x+path[vj].toString()+"2"+y+q,path[1].parent));
+									break;
 								}
-							} else {
+							}
+							if(j === 1) {
 								path[1].solving = true;
 								let thing = auj.toString().split(path[1].toString());
 								let p = thing[0];
