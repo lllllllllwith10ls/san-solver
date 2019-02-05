@@ -532,7 +532,7 @@ class Separator {
 							if(path[2]) {
 								path[2].solving = true;
 
-								let buj = path[1].split(path[2].toString()+"2");
+								let buj = path[1].toString().split(path[2].toString()+"2");
 								let x = buj[0];
 								let y = buj[1];
 								path[2].solving = false;
