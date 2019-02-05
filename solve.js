@@ -526,10 +526,6 @@ class Separator {
 							if(uj > 1) {
 								path.unshift(auj);
 								while(Separator.level(auj,auj1) !== auj1) {
-									console.log(auj);
-									console.log(auj1);
-									console.log(Separator.level(auj,auj1));
-									path.push(auj);
 									auj = auj.parent;
 								}
 								
