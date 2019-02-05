@@ -505,7 +505,7 @@ class Separator {
 					let t = this.layer;
 					let a = this;
 					let a1 = m;
-					while(Separator.level(a,m) === m) {
+					while(Separator.level(a,a1) !== m) {
 						a1 = a;
 						a = a.parent;
 						t--;
