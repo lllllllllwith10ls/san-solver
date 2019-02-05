@@ -506,7 +506,7 @@ class Separator {
 					let t = this.layer;
 					let a = this;
 					let a1 = m;
-					while(Separator.level(a,m) !== a) {
+					while(Separator.level(a,m) !== m) {
 						a1 = a;
 						a = a.parent;
 						t--;
@@ -526,7 +526,7 @@ class Separator {
 							if(uj > 1) {
 								let path = [];
 								auj1 = auj;
-								while(Separator.level(auj,auj1) !== auj) {
+								while(Separator.level(auj,auj1) !== auj1) {
 									console.log(auj);
 									console.log(auj1);
 									console.log(Separator.level(auj,auj1));
