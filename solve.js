@@ -526,6 +526,7 @@ class Separator {
 								let path = [];
 								auj1 = auj;
 								while(Separator.level(auj,auj1) === auj1) {
+									auj1 = auj;
 									path.push(auj);
 									auj = auj.parent;
 								}
