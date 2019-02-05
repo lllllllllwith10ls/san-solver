@@ -332,7 +332,7 @@ class Separator {
 			}
 			if(version === "DAN") {
 				if(this.separators[i].array[0] === 1 && this.separators[i].array[1] === 2 && this.separators[i].separators[0].commas > 2 ) {
-					this.separators[i] = new Separator(",".repeat(this.separators[i].separators[0].commas-1));
+					this.separators[i] = new Separator(",".repeat(this.separators[i].separators[0].commas-1),this);
 				}
 			}
 		}
