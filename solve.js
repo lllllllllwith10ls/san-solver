@@ -527,6 +527,9 @@ class Separator {
 								let path = [];
 								auj1 = auj;
 								while(Separator.level(auj,auj1) !== auj) {
+									console.log(auj);
+									console.log(auj1);
+									console.log(Separator.level(auj,auj1));
 									path.push(auj);
 									auj = auj.parent;
 								}
