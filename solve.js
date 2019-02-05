@@ -559,6 +559,7 @@ class Separator {
 									}
 									Object.assign(path[path.length-1], oldSep);
 									Object.assign(path[0],new Separator(p+x+path[vj-1].toString()+"2"+y+q,path[0].parent));
+									break;
 								}
 							}
 							if(uj === 1) {
