@@ -622,7 +622,7 @@ function solve() {
 
 }
 function change() {
-	if(version = "mEAN") {
+	if(version === "mEAN") {
 		version = "DAN";
 		document.getElementById("input").value = "s(3,3{1,,,3}3)";
 	} else {
