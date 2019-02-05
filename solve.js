@@ -524,10 +524,10 @@ class Separator {
 						let path = [];
 						for(let uj = m2-1; uj >= 1; uj--) {
 							if(uj > 1) {
-								path.unshift(auj);
-								while(Separator.level(auj,auj1) !== auj1) {
+								while(Separator.level(auj,auj[0]) !== auj1) {
 									auj = auj.parent;
 								}
+								path.unshift(auj);
 								
 								if(path[2]) {
 									path[2].solving = true;
