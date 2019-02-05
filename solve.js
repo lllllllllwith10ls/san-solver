@@ -522,13 +522,14 @@ class Separator {
 					} else {
 						let auj = m;
 						let path = [];
+						path.unshift(auj);
 						for(let uj = m2-1; uj >= 1; uj--) {
 							if(uj > 1) {
-								path.unshift(auj);
 								while(Separator.level(auj,auj[0]) !== auj[0]) {
 									auj = auj.parent;
 								}
 								
+								path.unshift(auj);
 								if(path[2]) {
 									path[2].solving = true;
 								
