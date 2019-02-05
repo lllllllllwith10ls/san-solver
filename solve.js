@@ -358,7 +358,7 @@ class Separator {
 			for(let i = 0; i < this.separators.length; i++) {
 				if(this.separators[i].commas >= 2) {
 					if(this.separators[i].commas < commas) {
-						this.separators[i] = new Separator("{1"+",".repeat(this.separators[i].commas+1)+"2}");
+						this.separators[i] = new Separator("{1"+",".repeat(this.separators[i].commas+1)+"2}",this);
 						
 					}
 				}
@@ -506,7 +506,7 @@ class Separator {
 					let t = this.layer;
 					let a = this;
 					let a1 = m;
-					while(Separator.level(a,m) !== m) {
+					while(Separator.level(a,m) !== a) {
 						a1 = a;
 						a = a.parent;
 						t--;
