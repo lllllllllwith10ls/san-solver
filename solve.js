@@ -538,7 +538,7 @@ class Separator {
 								let blef = new Separator(x+path[0]+"2"+y,this);
 								if(Separator.level(auj,blef) === blef) {
 									let vj = 1;
-									while(Separator.level(path[vj],path[1]) !== path[1]) {
+									while(Separator.level(path[vj-1],path[1]) !== path[1]) {
 										vj++;
 									}
 									path[vj-1].solving = true;
