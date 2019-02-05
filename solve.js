@@ -536,7 +536,7 @@ class Separator {
 								let x = buj[0];
 								let y = buj[1];
 								path[1].solving = false;
-								let blef = new Separator(x+path[0]+"2"+y,this);
+								let blef = new Separator(x+path[0].toString()+"2"+y,this);
 								if(Separator.level(auj,blef) === blef) {
 									let vj = 1;
 									while(Separator.level(path[vj-1],path[1]) !== path[1]) {
@@ -557,7 +557,6 @@ class Separator {
 										p = buj[0];
 										q = buj[1];
 									}
-									Object.assign(path[path.length-1], oldSep);
 									Object.assign(path[0],new Separator(p+x+path[vj-1].toString()+"2"+y+q,path[0].parent));
 									break;
 								}
