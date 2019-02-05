@@ -497,6 +497,7 @@ class Separator {
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(version === "DAN") {
 				if(this.separators[i-1].commas > 1 ) {
+					let oldSep = new Separator(this.toString(),this.parent);
 					let newSep = new Separator(this.separators[i-1].toString(),this);
 					this.array[i]--;
 					this.separators.splice(i-1,0,newSep);
@@ -556,8 +557,8 @@ class Separator {
 										p = buj[0];
 										q = buj[1];
 									}
+									Object.assign(path[path.length-1], oldSep);
 									Object.assign(path[0],new Separator(p+x+path[vj-1].toString()+"2"+y+q,path[0].parent));
-									break;
 								}
 							}
 							if(uj === 1) {
