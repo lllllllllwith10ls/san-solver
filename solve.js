@@ -525,20 +525,20 @@ class Separator {
 							}
 							path.unshift(auj);
 
-							if(path[1]) {
-								path[1].solving = true;
-								let buj = path[0].toString().split(path[1].toString());
+							if(path[2]) {
+								path[2].solving = true;
+								let buj = path[1].toString().split(path[2].toString());
 								if(typeof buj === "string") {
 									buj = ["",""];
 								}
 								buj[1] = buj[1].substr(1);
 								let x = buj[0];
 								let y = buj[1];
-								path[1].solving = false;
+								path[2].solving = false;
 								let blef = new Separator(x+path[1].toString()+"2"+y,this);
 								if(Separator.level(auj,blef) === blef) {
-									let vj = 1;
-									while(Separator.level(path[vj],path[1]) !== path[1]) {
+									let vj = 0;
+									while(Separator.level(path[vj],path[2]) !== path[2]) {
 										vj++;
 									}
 									path[vj].solving = true;
