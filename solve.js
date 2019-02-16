@@ -497,11 +497,7 @@ class Separator {
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(version === "DAN") {
 				if(this.separators[i-1].commas > 1 ) {
-					let oldSep = new Separator(this.toString(),this.parent);
-					let newSep = new Separator(this.separators[i-1].toString(),this);
-					this.array[i]--;
-					this.separators.splice(i-1,0,newSep);
-					this.array.splice(i,0,2);
+					let num = this.array[i];
 					let m = this.separators[i-1];
 					let m2 = this.separators[i-1].commas;
 					let t = this.layer;
@@ -552,7 +548,7 @@ class Separator {
 									let q = buj[1];
 									
 									Object.assign(auj,new Separator(p+x+path[vj-1].toString()+"2"+y+q,auj.parent));
-									console.log(p+x+path[vj-1].toString()+"2"+y+q);
+									console.log(p+x+path[vj-1].toString()+"2"+m.toString+num+y+q);
 									break;
 								}
 							}
