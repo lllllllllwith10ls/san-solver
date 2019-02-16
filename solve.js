@@ -539,7 +539,7 @@ class Separator {
 							}
 							if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
 								let vj = 0;
-								while(Separator.level(path[vj],path[2]) !== path[2]) {
+								while(Separator.level(path[vj],path[1]) !== path[1]) {
 									vj++;
 								}
 								path[vj].solving = true;
