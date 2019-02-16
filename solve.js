@@ -554,8 +554,8 @@ class Separator {
 								if(typeof buj === "string") {
 									buj = ["",""];
 								}
-								p = buj[0];
-								q = buj[1];
+								let p = buj[0];
+								let q = buj[1];
 								q = q.substr(1);
 								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
 
