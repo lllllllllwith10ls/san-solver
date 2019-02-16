@@ -527,6 +527,13 @@ class Separator {
 							let blef = new Separator(",",this);
 							let x;
 							let y;
+							if(uj === 1) {
+								path[0].solving = true;
+								let thing = auj.toString().split(path[0].toString());
+								let p = thing[0];
+								let q = thing[1];
+								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
+							}
 							if(path[2]) {
 								path[2].solving = true;
 								let buj = path[1].toString().split(path[2].toString());
@@ -560,13 +567,6 @@ class Separator {
 								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
 
 								break;
-							}
-							if(uj === 1) {
-								path[0].solving = true;
-								let thing = auj.toString().split(path[0].toString());
-								let p = thing[0];
-								let q = thing[1];
-								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
 							}
 						}
 					}
