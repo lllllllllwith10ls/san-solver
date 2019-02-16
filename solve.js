@@ -539,7 +539,7 @@ class Separator {
 								path[2].solving = false;
 								blef = new Separator(x+path[1].toString()+"2"+y,this);
 							} else {
-								x = "{";
+								x = "{1";
 								y = "}";
 							}
 							if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
