@@ -543,7 +543,7 @@ class Separator {
 									}
 									path[vj-1].solving = true;
 									buj = auj.toString();
-									buj.split(path[vj-1].toString());
+									buj = buj.split(path[vj-1].toString());
 									path[vj-1].solving = false;
 									if(typeof buj === "string") {
 										buj = ["",""];
