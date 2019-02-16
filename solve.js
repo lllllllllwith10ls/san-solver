@@ -524,7 +524,7 @@ class Separator {
 								auj = auj.parent;
 							}
 							path.unshift(auj);
-
+							let blef;
 							if(path[2]) {
 								path[2].solving = true;
 								let buj = path[1].toString().split(path[2].toString());
@@ -536,25 +536,25 @@ class Separator {
 								let y = buj[1];
 								path[2].solving = false;
 								let blef = new Separator(x+path[1].toString()+"2"+y,this);
-								if(Separator.level(auj,blef) === blef) {
-									let vj = 0;
-									while(Separator.level(path[vj],path[2]) !== path[2]) {
-										vj++;
-									}
-									path[vj].solving = true;
-									buj = auj.toString();
-									buj = buj.split(path[vj].toString());
-									path[vj].solving = false;
-									if(typeof buj === "string") {
-										buj = ["",""];
-									}
-									let p = buj[0];
-									let q = buj[1];
-									q = q.substr(1);
-									Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
-									
-									break;
+							}
+							if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
+								let vj = 0;
+								while(Separator.level(path[vj],path[2]) !== path[2]) {
+									vj++;
 								}
+								path[vj].solving = true;
+								buj = auj.toString();
+								buj = buj.split(path[vj].toString());
+								path[vj].solving = false;
+								if(typeof buj === "string") {
+									buj = ["",""];
+								}
+								let p = buj[0];
+								let q = buj[1];
+								q = q.substr(1);
+								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
+
+								break;
 							}
 							if(uj === 1) {
 								path[0].solving = true;
