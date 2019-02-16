@@ -548,21 +548,21 @@ class Separator {
 								}
 								if(Separator.level(auj,blef) === blef) {
 									let vj = 1;
-									while(Separator.level(path[vj-1],path[1]) !== path[1]) {
+									while(Separator.level(path[vj],path[1]) !== path[1]) {
 										vj++;
 									}
-									path[vj-1].solving = true;
+									path[vj].solving = true;
 									buj = auj.toString();
-									buj = buj.split(path[vj-1].toString());
-									path[vj-1].solving = false;
+									buj = buj.split(path[vj].toString());
+									path[vj].solving = false;
 									if(typeof buj === "string") {
 										buj = ["",""];
 									}
 									let p = buj[0];
 									let q = buj[1];
 									
-									Object.assign(auj,new Separator(p+x+path[vj-1].toString()+"2"+m.toString()+num+y+q,auj.parent));
-									console.log(p+x+path[vj-1].toString()+"2"+m.toString()+num+y+q);
+									Object.assign(auj,new Separator(p+x+path[vj].toString()+"2"+m.toString()+num+y+q,auj.parent));
+									console.log(p+x+path[vj].toString()+"2"+m.toString()+num+y+q);
 									break;
 								}
 							}
