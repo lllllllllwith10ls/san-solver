@@ -564,9 +564,9 @@ class Separator {
 									}
 									let p = buj[0];
 									let q = buj[1];
+									q = q.substr(1);
+									Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
 									
-									Object.assign(auj,new Separator(p+x+path[vj].toString()+"2"+m.toString()+num+y+q,auj.parent));
-									console.log(p+x+path[vj].toString()+"2"+m.toString()+num+y+q);
 									break;
 								}
 							}
