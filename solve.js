@@ -497,7 +497,7 @@ class Separator {
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(version === "DAN") {
 				if(this.separators[i-1].commas > 1 ) {
-					let num = this.array[i];
+					let num = this.array[i]-1;
 					let m = this.separators[i-1];
 					let m2 = this.separators[i-1].commas;
 					let t = this.layer;
@@ -538,12 +538,13 @@ class Separator {
 									while(Separator.level(path[vj-1],path[1]) !== path[1]) {
 										vj++;
 									}
-									buj = auj;
 									path[vj-1].solving = true;
 									buj = auj.toString();
 									buj.split(path[vj-1].toString());
 									path[vj-1].solving = false;
-
+									if(typof buj === "string") {
+										buj = ["",""];
+									}
 									let p = buj[0];
 									let q = buj[1];
 									
