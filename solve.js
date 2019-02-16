@@ -518,7 +518,7 @@ class Separator {
 						Object.assign(a,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
 					} else {
 						let auj = m;
-						let path = [];
+						let path = [auj];
 						for(let uj = m2; uj >= 1; uj--) {
 							while(Separator.level(auj,path[0]) !== path[0]) {
 								auj = auj.parent;
