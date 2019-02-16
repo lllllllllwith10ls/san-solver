@@ -525,6 +525,8 @@ class Separator {
 							}
 							path.unshift(auj);
 							let blef = new Separator(",",this);
+							let x;
+							let y;
 							if(path[2]) {
 								path[2].solving = true;
 								let buj = path[1].toString().split(path[2].toString());
@@ -532,10 +534,13 @@ class Separator {
 									buj = ["",""];
 								}
 								buj[1] = buj[1].substr(1);
-								let x = buj[0];
-								let y = buj[1];
+								x = buj[0];
+								y = buj[1];
 								path[2].solving = false;
 								blef = new Separator(x+path[1].toString()+"2"+y,this);
+							} else {
+								x = "{";
+								y = "}";
 							}
 							if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
 								let vj = 0;
@@ -549,8 +554,8 @@ class Separator {
 								if(typeof buj === "string") {
 									buj = ["",""];
 								}
-								let p = buj[0];
-								let q = buj[1];
+								p = buj[0];
+								q = buj[1];
 								q = q.substr(1);
 								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
 
