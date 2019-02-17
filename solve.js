@@ -356,14 +356,22 @@ class Separator {
 	}
 	prepare(commas) {
 		if(version === "DAN") {
-			for(let i = 0; i < this.separators.length; i++) {
-				if(this.separators[i].commas >= 2) {
-					if(this.separators[i].commas < commas) {
-						this.separators[i] = new Separator("{1"+",".repeat(this.separators[i].commas+1)+"2}",this);
+			let dummy = new Separator(",");
+			Object.assign(dummy,this);
+			
+			if(this.commas < commas && this.commas > 1) {
+				Object.assign(dummy,new Separator("{1"+",".repeat(this.separators[i].commas+1)+"2}",this.parent));
+			}
+			for(let i = 0; i < dummy.separators.length; i++) {
+				if(dummy.separators[i].commas >= 2) {
+					if(dummy.separators[i].commas < commas) {
+						dummy.separators[i] = new Separator("{1"+",".repeat(dummy.separators[i].commas+1)+"2}",dummy);
 						
 					}
 				}
+				dummy.separators[i] = dummy.separators[i].prepare(commas);
 			}
+			return dummy;
 		}
 	}
 	static level(a,b) {
@@ -389,8 +397,8 @@ class Separator {
 				return "equal";
 			}
 			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
-			a.prepare(maxCommas);
-			b.prepare(maxCommas);
+			a = a.prepare(maxCommas);
+			b = b.prepare(maxCommas);
 			if(a.commas >= 2) {
 				return a;
 			}
