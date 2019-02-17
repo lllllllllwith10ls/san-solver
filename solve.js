@@ -496,117 +496,113 @@ class Separator {
 				this.parent.array.splice(index,0,...ones);
 			}
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
-			if(version === "DAN") {
-				if(this.separators[i-1].commas > 1 ) {
-					let num = this.array[i]-1;
-					let m = this.separators[i-1];
-					let m2 = this.separators[i-1].commas;
-					let t = this.layer;
-					let a = this;
-					let a1 = m;
-					while(Separator.level(a,m) !== m) {
-						a1 = a;
-						a = a.parent;
-						t--;
-					}
-					if(a instanceof SanArray) {
-						a1.solving = true;
-						let aum = a.toString();
-						aum = aum.split(a1.toString());
-						let p = aum[0];
-						let q = aum[1];
-						a1.solving = false;
-						Object.assign(a,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
-					} else {
-						let auj = m;
-						let path = [auj];
-						for(let uj = m2; uj >= 1; uj--) {
-							while(Separator.level(auj,path[0]) !== path[0]) {
-								auj = auj.parent;
+			if(version === "DAN" && this.separators[i-1].commas > 1 ) {
+				let num = this.array[i]-1;
+				let m = this.separators[i-1];
+				let m2 = this.separators[i-1].commas;
+				let t = this.layer;
+				let a = this;
+				let a1 = m;
+				while(Separator.level(a,m) !== m) {
+					a1 = a;
+					a = a.parent;
+					t--;
+				}
+				if(a instanceof SanArray) {
+					a1.solving = true;
+					let aum = a.toString();
+					aum = aum.split(a1.toString());
+					let p = aum[0];
+					let q = aum[1];
+					a1.solving = false;
+					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
+				} else {
+					let auj = m;
+					let path = [auj];
+					for(let uj = m2; uj >= 1; uj--) {
+						while(Separator.level(auj,path[0]) !== path[0]) {
+							auj = auj.parent;
+						}
+						path.unshift(auj);
+						let blef = new Separator(",",this);
+						let x;
+						let y;
+						if(uj === 1) {
+							path[1].solving = true;
+							let thing = auj.toString().split(path[1].toString());
+							let p = thing[0];
+							let q = thing[1];
+							Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
+							break;
+						}
+						if(path[2]) {
+							path[2].solving = true;
+							let buj = path[1].toString().split(path[2].toString());
+							if(typeof buj === "string") {
+								buj = ["",""];
 							}
-							path.unshift(auj);
-							let blef = new Separator(",",this);
-							let x;
-							let y;
-							if(uj === 1) {
-								path[1].solving = true;
-								let thing = auj.toString().split(path[1].toString());
-								let p = thing[0];
-								let q = thing[1];
-								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
-								break;
+							buj[1] = buj[1].substr(1);
+							x = buj[0];
+							y = buj[1];
+							path[2].solving = false;
+							blef = new Separator(x+path[1].toString()+"2"+y,this);
+						} else {
+							x = "{1";
+							y = "}";
+						}
+						if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
+							let vj = 0;
+							while(Separator.level(path[vj],path[1]) !== path[1]) {
+								vj++;
 							}
-							if(path[2]) {
-								path[2].solving = true;
-								let buj = path[1].toString().split(path[2].toString());
-								if(typeof buj === "string") {
-									buj = ["",""];
-								}
-								buj[1] = buj[1].substr(1);
-								x = buj[0];
-								y = buj[1];
-								path[2].solving = false;
-								blef = new Separator(x+path[1].toString()+"2"+y,this);
+							path[vj].solving = true;
+							let buj = auj.toString();
+							buj = buj.split(path[vj].toString());
+							path[vj].solving = false;
+							if(typeof buj === "string") {
+								buj = ["",""];
+							}
+							let p = buj[0];
+							let q = buj[1];
+							q = q.substr(1);
+							if(path.length > 3) {
+								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+y+q,auj.parent));
 							} else {
-								x = "{1";
-								y = "}";
+								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
 							}
-							if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
-								let vj = 0;
-								while(Separator.level(path[vj],path[1]) !== path[1]) {
-									vj++;
-								}
-								path[vj].solving = true;
-								let buj = auj.toString();
-								buj = buj.split(path[vj].toString());
-								path[vj].solving = false;
-								if(typeof buj === "string") {
-									buj = ["",""];
-								}
-								let p = buj[0];
-								let q = buj[1];
-								q = q.substr(1);
-								if(path.length > 3) {
-									Object.assign(auj,new Separator(p+x+auj.toString()+"2"+y+q,auj.parent));
-								} else {
-									Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
-								}
-								break;
-							}
+							break;
 						}
 					}
 				}
-			} else if(version === "mEAN") {
-				if(this.separators[i-1].ga > 0) {
-					let newSep = new Separator(this.separators[i-1].toString(),this);
-					this.array[i]--;
-					this.separators.splice(i-1,0,newSep);
-					this.array.splice(i,0,2);
-					let m = this.separators[i-1];
-					let t = this.layer;
-					let a = this;
-					let a1 = m;
-					while(a.level >= m.level) {
-						a1 = a;
-						a = a.parent;
-						t--;
-					}
-					if(a.ga === m.ga-1) {
-						m.solving = true;
-						let a_t = a.toString();
-						a_t = a_t.split(m.toString());
-						let p = a_t[0];
-						let q = a_t[1];
-						Object.assign(a,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent));
-					} else {
-						a1.solving = true;
-						let a_t = a.toString();
-						a_t = a_t.split(a1.toString());
-						let p = a_t[0];
-						let q = a_t[1];
-						a1.solving = false;
-						Object.assign(a,new Separator(p+"{1"+a1.toString()+"2^"+"`".repeat(m.ga-1)+"}"+q,a.parent));
-					}
+			} else if(version === "mEAN" && this.separators[i-1].ga > 0) {
+				let newSep = new Separator(this.separators[i-1].toString(),this);
+				this.array[i]--;
+				this.separators.splice(i-1,0,newSep);
+				this.array.splice(i,0,2);
+				let m = this.separators[i-1];
+				let t = this.layer;
+				let a = this;
+				let a1 = m;
+				while(a.level >= m.level) {
+					a1 = a;
+					a = a.parent;
+					t--;
+				}
+				if(a.ga === m.ga-1) {
+					m.solving = true;
+					let a_t = a.toString();
+					a_t = a_t.split(m.toString());
+					let p = a_t[0];
+					let q = a_t[1];
+					Object.assign(a,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),a.parent));
+				} else {
+					a1.solving = true;
+					let a_t = a.toString();
+					a_t = a_t.split(a1.toString());
+					let p = a_t[0];
+					let q = a_t[1];
+					a1.solving = false;
+					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2^"+"`".repeat(m.ga-1)+"}"+q,a.parent));
 				}
 			} else {
 				this.array[i]--;
