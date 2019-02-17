@@ -284,6 +284,7 @@ class Separator {
 				}
 			}
 			this.array = array;
+			this.commas = 1;
 		}
 	}
 	toString() {
