@@ -565,7 +565,7 @@ class Separator {
 								let p = buj[0];
 								let q = buj[1];
 								q = q.substr(1);
-								if(path.length > 2) {
+								if(path.length > 3) {
 									Object.assign(auj,new Separator(p+x+auj.toString()+"2"+y+q,auj.parent));
 								} else {
 									Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
