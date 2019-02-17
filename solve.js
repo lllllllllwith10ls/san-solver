@@ -230,7 +230,7 @@ class Separator {
 						this.separators.push(new Separator(",".repeat(commas),this));
 					} else {
 						str = str.replace(","," ");
-						this.separators.push(new Separator("1",this));
+						this.separators.push(new Separator(",",this));
 					}
 				}
 				if(str[i] === "`" && version === "mEAN") {
