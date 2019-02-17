@@ -528,7 +528,7 @@ class Separator {
 					aum = aum.split(m.toString());
 					let p = aum[0];
 					let q = aum[1];
-					Object.assign(a1,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
+					Object.assign(a1,new Separator(p+"{1"+a1.toString()+"2}"+q,a1.parent));
 				} else {
 					let auj = m;
 					let path = [auj];
