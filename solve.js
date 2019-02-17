@@ -511,19 +511,23 @@ class Separator {
 				let t = this.layer;
 				let a = this;
 				let a1 = m;
+				let a2 = this;
 				while(Separator.level(a,m) !== m) {
 					a1 = a;
 					a = a.parent;
 					t--;
 				}
 				if(a instanceof SanArray) {
-					a1.solving = true;
-					let aum = a.toString();
-					aum = aum.split(a1.toString());
+					let newSep = new Separator(a1.separators[i-1].toString(),this);
+					a2.array[i]--;
+					a2.separators.splice(i-1,0,newSep);
+					a2.array.splice(i,0,2);
+					m.solving = true;
+					let aum = a1.toString();
+					aum = aum.split(m.toString());
 					let p = aum[0];
 					let q = aum[1];
-					a1.solving = false;
-					Object.assign(a,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
+					Object.assign(a1,new Separator(p+"{1"+a1.toString()+"2}"+q,a.parent));
 				} else {
 					let auj = m;
 					let path = [auj];
