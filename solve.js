@@ -533,6 +533,7 @@ class Separator {
 								let p = thing[0];
 								let q = thing[1];
 								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
+								break;
 							}
 							if(path[2]) {
 								path[2].solving = true;
