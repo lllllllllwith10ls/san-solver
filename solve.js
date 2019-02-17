@@ -518,9 +518,10 @@ class Separator {
 					t--;
 				}
 				if(a instanceof SanArray) {
-					let newSep = new Separator(a1.separators[i-1].toString(),this);
+					let newSep = new Separator(a2.separators[i-1].toString(),this);
 					a2.array[i]--;
 					a2.separators.splice(i-1,0,newSep);
+					m = a2.separators[i-1];
 					a2.array.splice(i,0,2);
 					m.solving = true;
 					let aum = a1.toString();
