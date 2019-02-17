@@ -388,15 +388,15 @@ class Separator {
 			if(a.commas >= 2 && b.commas >= 2) {
 				return "equal";
 			}
+			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
+			a.prepare(maxCommas);
+			b.prepare(maxCommas);
 			if(a.commas >= 2) {
 				return a;
 			}
 			if(b.commas >= 2) {
 				return b;
 			}
-			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
-			a.prepare(maxCommas);
-			b.prepare(maxCommas);
 		}
 		if(a.array.length > 1 && b.array.length === 1) {
 			return a;
