@@ -356,7 +356,7 @@ class Separator {
 	}
 	prepare(commas) {
 		if(version === "DAN") {
-			let dummy = new Separator(",");
+			let dummy = new Separator(",",this);
 			Object.assign(dummy,this);
 			
 			if(this.commas < commas && this.commas > 1) {
