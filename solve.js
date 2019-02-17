@@ -528,8 +528,8 @@ class Separator {
 							let x;
 							let y;
 							if(uj === 1) {
-								path[0].solving = true;
-								let thing = auj.toString().split(path[0].toString());
+								path[1].solving = true;
+								let thing = auj.toString().split(path[1].toString());
 								let p = thing[0];
 								let q = thing[1];
 								Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
