@@ -581,7 +581,7 @@ class Separator {
 							}
 							path2[vj].solving = true;
 							let buj = auj.toString();
-							buj = buj.split(path[vj].toString());
+							buj = buj.split(path2[vj].toString());
 							path2[vj].solving = false;
 							if(typeof buj === "string") {
 								buj = ["",""];
