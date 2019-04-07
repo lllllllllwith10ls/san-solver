@@ -535,7 +535,7 @@ class Separator {
 					let path = [auj];
 					for(let uj = m2; uj >= 1; uj--) {
 						let path2 = [];
-						while(Separator.level(auj,path[0]) !== path[0]) {
+						while(Separator.level(auj,path[0]) === path[0]) {
 							auj = auj.parent;
 							path2.push(auj);
 						}
