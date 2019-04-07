@@ -537,7 +537,7 @@ class Separator {
 						let path2 = [];
 						while(Separator.level(auj,path[0]) !== path[0]) {
 							auj = auj.parent;
-							path2.push[auj];
+							path2.push(auj);
 						}
 						path.unshift(auj);
 						let blef = new Separator(",",this);
