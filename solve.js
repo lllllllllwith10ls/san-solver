@@ -553,7 +553,7 @@ class Separator {
 							}
 							let p = bu1[0];
 							let q = bu1[1];
-							Object.assign(path[1],new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1)));
+							Object.assign(path[1],new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),path[1].parent));
 							break;
 						}
 						if(path[2] && uj === m2) {
