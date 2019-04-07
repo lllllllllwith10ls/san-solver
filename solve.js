@@ -94,7 +94,7 @@ class SanArray {
 				i--;
 			}
 		}
-		for(let i = 1; i < this.separators.length; i++) {
+		for(let i = 0; i < this.separators.length; i++) {
 			this.separators[i].clean();
 		}
 	}
