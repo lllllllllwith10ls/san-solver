@@ -544,10 +544,10 @@ class Separator {
 						let x;
 						let y;
 						if(uj === 1) {
-							path[1].solving = true;
-							let bu1 = path[0].toString();
-							bu1 = bu1.split(path[1].toString());
-							path2[1].solving = false;
+							path[2].solving = true;
+							let bu1 = path[1].toString();
+							bu1 = bu1.split(path[2].toString());
+							path[2].solving = false;
 							if(typeof bu1 === "string") {
 								bu1 = ["",""];
 							}
