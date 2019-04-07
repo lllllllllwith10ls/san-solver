@@ -371,7 +371,7 @@ class Separator {
 				}
 				dummy.separators[i] = dummy.separators[i].prepare(commas);
 			}
-			return dummy;
+			Object.assign(this,dummy);
 		}
 	}
 	static level(a,b) {
@@ -397,8 +397,8 @@ class Separator {
 				return "equal";
 			}
 			let maxCommas = Math.max(a.maxCommas,b.maxCommas);
-			a = a.prepare(maxCommas);
-			b = b.prepare(maxCommas);
+			a.prepare(maxCommas);
+			b.prepare(maxCommas);
 			if(a.commas >= 2) {
 				return a;
 			}
