@@ -536,10 +536,10 @@ class Separator {
 				} else {
 					let auj = m;
 					let path = [auj];
+					let path2 = [];
 					for(let uj = m2; uj >= 1; uj--) {
-						let path2 = [];
 						while(Separator.level(auj,path[0]) !== path[0]) {
-							path2.push(auj);
+							path2.unshift(auj);
 							auj = auj.parent;
 						}
 						path.unshift(auj);
@@ -575,8 +575,8 @@ class Separator {
 							y = "}";
 						}
 						if(Separator.level(auj,blef) === blef) {
-							let vj = 0;
-							while(Separator.level(path2[vj],path[1]) !== path[1]) {
+							let vj = 1;
+							while(Separator.level(path2[vj],path[1]) !== path[2]) {
 								vj++;
 							}
 							path2[vj].solving = true;
@@ -589,7 +589,7 @@ class Separator {
 							let p = buj[0];
 							let q = buj[1];
 							q = q.substr(1);
-							Object.assign(auj,new Separator(p+x+auj.toString()+"2"+y+q,auj.parent));
+							Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
 							break;
 						}
 					}
