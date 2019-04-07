@@ -575,7 +575,7 @@ class Separator {
 							y = "}";
 						}
 						if(Separator.level(auj,blef) === blef) {
-							let vj = 1;
+							let vj = 0;
 							while(Separator.level(path2[vj],path[1]) !== path[2]) {
 								vj++;
 							}
