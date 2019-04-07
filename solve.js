@@ -597,9 +597,17 @@ class Separator {
 							let p = buj[0];
 							let q = buj[1];
 							if(uj === 3) {
-								Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
+								if(auj instanceof SanArray) {
+									Object.assign(auj,new SanArray(p+x+path2[vj].toString()+"2"+m.toString+(num-1)+y+q,auj.parent));
+								} else {
+									Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+m.toString+(num-1)+y+q,auj.parent));
+								}
 							} else {
-								Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+m.toString+(num-1)+y+q,auj.parent));
+								if(auj instanceof SanArray) {
+									Object.assign(auj,new SanArray(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
+								} else {
+									Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
+								}
 							}
 							break;
 						}
