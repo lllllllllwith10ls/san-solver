@@ -534,8 +534,10 @@ class Separator {
 					let auj = m;
 					let path = [auj];
 					for(let uj = m2; uj >= 1; uj--) {
+						let path2 = [];
 						while(Separator.level(auj,path[0]) !== path[0]) {
 							auj = auj.parent;
+							path2.push[auj];
 						}
 						path.unshift(auj);
 						let blef = new Separator(",",this);
@@ -543,10 +545,15 @@ class Separator {
 						let y;
 						if(uj === 1) {
 							path[1].solving = true;
-							let thing = auj.toString().split(path[1].toString());
-							let p = thing[0];
-							let q = thing[1];
-							Object.assign(auj,new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1),auj.parent));
+							let bu1 = path[0].toString();
+							bu1 = bu1.split(path[1].toString());
+							path2[1].solving = false;
+							if(typeof bu1 === "string") {
+								bu1 = ["",""];
+							}
+							let p = bu1[0];
+							let q = bu1[1];
+							Object.assign(path[1],new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1));
 							break;
 						}
 						if(path[2]) {
@@ -564,26 +571,22 @@ class Separator {
 							x = "{1";
 							y = "}";
 						}
-						if(Separator.level(auj,blef) === blef || auj.parent instanceof SanArray) {
+						if(Separator.level(auj,blef) === blef) {
 							let vj = 0;
-							while(Separator.level(path[vj],path[1]) !== path[1]) {
+							while(Separator.level(path2[vj],path[1]) !== path[1]) {
 								vj++;
 							}
-							path[vj].solving = true;
+							path2[vj].solving = true;
 							let buj = auj.toString();
 							buj = buj.split(path[vj].toString());
-							path[vj].solving = false;
+							path2[vj].solving = false;
 							if(typeof buj === "string") {
 								buj = ["",""];
 							}
 							let p = buj[0];
 							let q = buj[1];
 							q = q.substr(1);
-							if(path.length > 3) {
-								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+y+q,auj.parent));
-							} else {
-								Object.assign(auj,new Separator(p+x+auj.toString()+"2"+m.toString()+num+y+q,auj.parent));
-							}
+							Object.assign(auj,new Separator(p+x+auj.toString()+"2"+y+q,auj.parent));
 							break;
 						}
 					}
