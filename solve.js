@@ -512,7 +512,7 @@ class Separator {
 				let a = this;
 				let a1 = m;
 				let a2 = this;
-				while(Separator.level(a,m) !== m) {
+				while(Separator.level(a,m) === m) {
 					a1 = a;
 					a = a.parent;
 					t--;
