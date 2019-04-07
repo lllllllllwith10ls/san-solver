@@ -505,7 +505,10 @@ class Separator {
 			}
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(version === "DAN" && this.separators[i-1].commas > 1 ) {
-				let num = this.array[i]-1;
+				let newSep = new Separator(this.separators[i-1].toString(),this);
+				this.array[i]--;
+				this.separators.splice(i-1,0,newSep);
+				this.array.splice(i,0,2);
 				let m = this.separators[i-1];
 				let m2 = this.separators[i-1].commas;
 				let t = this.layer;
@@ -518,9 +521,9 @@ class Separator {
 					t--;
 				}
 				if(a instanceof SanArray) {
-					let newSep = new Separator(a2.separators[i-1].toString(),this);
+					let newerSep = new Separator(a2.separators[i-1].toString(),this);
 					a2.array[i]--;
-					a2.separators.splice(i-1,0,newSep);
+					a2.separators.splice(i-1,0,newerSep);
 					m = a2.separators[i-1];
 					a2.array.splice(i,0,2);
 					m.solving = true;
