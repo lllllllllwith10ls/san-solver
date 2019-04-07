@@ -598,9 +598,9 @@ class Separator {
 							let q = buj[1];
 							if(uj === 2) {
 								if(auj instanceof SanArray) {
-									Object.assign(auj,new SanArray(p+x+path2[vj].toString()+"2"+m.toString+(num-1)+y+q,auj.parent));
+									Object.assign(auj,new SanArray(p+x+path2[vj].toString()+"2"+m.toString()+(num-1)+y+q,auj.parent));
 								} else {
-									Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+m.toString+(num-1)+y+q,auj.parent));
+									Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+m.toString()+(num-1)+y+q,auj.parent));
 								}
 							} else {
 								if(auj instanceof SanArray) {
