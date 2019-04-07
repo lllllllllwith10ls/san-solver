@@ -505,12 +505,9 @@ class Separator {
 			}
 		} else if(this.separators[i-1].array.length === 1 && this.separators[i-1].array[0] === 1) {
 			if(version === "DAN" && this.separators[i-1].commas > 1 ) {
-				let newSep = new Separator(this.separators[i-1].toString(),this);
-				this.array[i]--;
-				this.separators.splice(i-1,0,newSep);
-				this.array.splice(i,0,2);
 				let m = this.separators[i-1];
 				let m2 = this.separators[i-1].commas;
+				let num = this.array[i];
 				let t = this.layer;
 				let a = this;
 				let a1 = m;
@@ -559,7 +556,18 @@ class Separator {
 							Object.assign(path[1],new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1)));
 							break;
 						}
-						if(path[2]) {
+						if(path[2] && uj === 3) {
+							path[2].solving = true;
+							let buj = path[1].toString().split(path[2].toString());
+							if(typeof buj === "string") {
+								buj = ["",""];
+							}
+							buj[1] = buj[1].substr(1);
+							x = buj[0];
+							y = buj[1];
+							path[2].solving = false;
+							blef = new Separator(x+path[1].toString()+"2"+m.toString()+(num-1)+y,this);
+						} else if(path[2]) {
 							path[2].solving = true;
 							let buj = path[1].toString().split(path[2].toString());
 							if(typeof buj === "string") {
@@ -588,7 +596,11 @@ class Separator {
 							}
 							let p = buj[0];
 							let q = buj[1];
-							Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
+							if(uj === 3) {
+								Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
+							} else {
+								Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+m.toString+(num-1)+y+q,auj.parent));
+							}
 							break;
 						}
 					}
