@@ -556,7 +556,7 @@ class Separator {
 							Object.assign(path[1],new Separator(p.repeat(iterator-1)+","+q.repeat(iterator-1)));
 							break;
 						}
-						if(path[2] && uj === 2) {
+						if(path[2] && uj === m2-1) {
 							path[2].solving = true;
 							let buj = path[1].toString().split(path[2].toString());
 							if(typeof buj === "string") {
@@ -596,7 +596,7 @@ class Separator {
 							}
 							let p = buj[0];
 							let q = buj[1];
-							if(uj === 2) {
+							if(uj === m2-1) {
 								if(auj instanceof SanArray) {
 									Object.assign(auj,new SanArray(p+x+path2[vj].toString()+"2"+m.toString()+(num-1)+y+q,auj.parent));
 								} else {
