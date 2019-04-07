@@ -609,6 +609,7 @@ class Separator {
 									Object.assign(auj,new Separator(p+x+path2[vj].toString()+"2"+y+q,auj.parent));
 								}
 							}
+							auj.clean();
 							break;
 						}
 					}
