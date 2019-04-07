@@ -369,7 +369,7 @@ class Separator {
 						
 					}
 				}
-				dummy.separators[i] = dummy.separators[i].prepare(commas);
+				dummy.separators[i].prepare(commas);
 			}
 			Object.assign(this,dummy);
 		}
